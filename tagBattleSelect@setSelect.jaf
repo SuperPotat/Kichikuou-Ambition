@@ -1,0 +1,115 @@
+void tagBattleSelect::setSelect(int nID, bool bSelect)
+{
+	int nTargetNo = getTargetNo(nID);
+	int nActionNo = getActionNo(nID);
+	int nType = 行動_ターゲット(nActionNo);
+	int i = 0;
+	int cnt = m_asButton.Numof();
+	ref tagBattleButton rfButton;
+	for (i = 0; i < cnt; ++i)
+	{
+		m_asButton[i].resetActionShow();
+	}
+	rfButton <- search(nTargetNo);
+	if (rfButton === NULL)
+	{
+		return;
+	}
+	rfButton.setSelect(nID, bSelect);
+	if (nType == 5 || nType == 6 || nType == 12)
+	{
+		int nNo = rfButton.getButtonNo(nID);
+		array@int anArray;
+		if (nType == 5 || nType == 6)
+		{
+			cnt = 戦闘_敵列(nTargetNo, anArray);
+		}
+		else
+		{
+			cnt = 戦闘_味方列(nTargetNo, anArray);
+		}
+		for (i = 0; i < cnt; ++i)
+		{
+			if (anArray[i] == nTargetNo)
+			{
+				continue;
+			}
+			rfButton <- search(anArray[i]);
+			if (rfButton !== NULL)
+			{
+				rfButton.setActionShow(nNo, nActionNo, bSelect, minibuttons);
+			}
+		}
+	}
+	if (nType == 10 || nType == 11 || nType == 13)
+	{
+		int nNo = rfButton.getButtonNo(nID);
+		array@int anArray;
+		cnt = 戦闘_味方col(nTargetNo, anArray);
+		for (i = 0; i < cnt; ++i)
+		{
+			if (anArray[i] == nTargetNo)
+			{
+				continue;
+			}
+			rfButton <- search(anArray[i]);
+			if (rfButton !== NULL)
+			{
+				rfButton.setActionShow(nNo, nActionNo, bSelect, minibuttons);
+			}
+		}
+	}
+	if (nType == 14)
+	{
+		int nNo = rfButton.getButtonNo(nID);
+		array@int anArray;
+		cnt = 戦闘_味方col(nTargetNo, anArray);
+		for (i = 0; i < cnt; ++i)
+		{
+			if (anArray[i] == nTargetNo)
+			{
+				continue;
+			}
+			rfButton <- search(anArray[i]);
+			if (rfButton !== NULL)
+			{
+				rfButton.setActionShow(nNo, nActionNo, bSelect, minibuttons);
+			}
+		}
+		cnt = 戦闘_敵列(nTargetNo, anArray);
+		for (i = 0; i < cnt; ++i)
+		{
+			if (anArray[i] == nTargetNo)
+			{
+				continue;
+			}
+			rfButton <- search(anArray[i]);
+			if (rfButton !== NULL)
+			{
+				rfButton.setActionShow(nNo, nActionNo, bSelect, minibuttons);
+			}
+		}
+	}
+	if (nType == 7 || nType == 8)
+	{
+		int nNo = rfButton.getButtonNo(nID);
+		for (i = 0; i < cnt; ++i)
+		{
+			rfButton <- m_asButton[i];
+			if (rfButton.getBushoNo() != nTargetNo)
+			{
+				rfButton.setActionShow(nNo, nActionNo, bSelect);
+			}
+		}
+	}
+	if (bSelect)
+	{
+		int nValue = 速度補正値(m_nBushoNo, 行動_待ち時間(nActionNo));
+		g_sArrow.set(順番_次(nValue));
+	}
+	else
+	{
+		g_sArrow.set(-1);
+	}
+	return;
+}

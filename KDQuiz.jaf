@@ -1,0 +1,30 @@
+void KDQuiz()
+{
+	EV("", 147483648);
+	ƒCƒxƒ“ƒg("");
+	‰¹Šy(53, 0, false);
+	‘S•”(0, 0, 9360, 0, 10020, "???", 1, 500, 0);
+	‚r‚o(0, 1, 500);
+	‘äŒ˜g(0, 0, 0);
+	Šç(407, "‚j ‚c", 1, 100);
+	'Congratulations! ' R;
+	'I am King Dragon, but you can call ' R;
+	'me KD. nya~' A;
+	'It seems the age of man is upon us!' R;
+	'A grand adventure!' A;
+	'As the #1 adventurer you may see me' R;
+	'around!' A;
+	'Please take this as a token of our' R;
+	'friendship!' A;
+	˜g•Â‚¶(0, 0);
+	ƒAƒCƒeƒ€æ“¾(4);
+	‚r‚l(0, 4, 0);
+	•«‹­§“o˜^(21, 1403, 5);
+	”Ä—p‚P(1403, 999);
+	¨—ÍƒLƒƒƒ‰s“®‰Šú‰»(21);
+	£•¶š—ñ = "K D wandered off.";
+	£•¶š—ñ‚Q = "Catch me if you can!";
+	‚r‚l(5054, 0, 0);
+	‚f‚e[185] = 1;
+	return;
+}

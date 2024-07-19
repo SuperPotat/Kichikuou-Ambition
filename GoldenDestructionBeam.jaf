@@ -1,0 +1,95 @@
+int GoldenDestructionBeamAI(int nターゲット, ref array@int anArray)
+{
+	int nNo = 0;
+	int nPlace = 戦闘_味方場所(nターゲット);
+	if (!anArray.Empty())
+	{
+		anArray.Free();
+	}
+	if (nPlace >= 1 && nPlace <= 3)
+	{
+		anArray.PushBack(nターゲット);
+		nNo = 戦闘_味方武将(nPlace + 3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+	}
+	if (nPlace >= 4 && nPlace <= 6)
+	{
+		nNo = 戦闘_味方武将(nPlace - 3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+		anArray.PushBack(nターゲット);
+	}
+	nPlace = 戦闘_敵場所(nターゲット+10);
+	if (nPlace >= 1 && nPlace <= 3)
+	{
+		anArray.PushBack(nターゲット+10);
+		nNo = 戦闘_敵武将(nPlace + 3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+	}
+	if (nPlace >= 4 && nPlace <= 6)
+	{
+		nNo = 戦闘_敵武将(nPlace - 3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+		anArray.PushBack(nターゲット+10);
+	}
+	return anArray.Numof();
+}
+
+int GoldenDestructionBeamPlayer(int nターゲット, ref array@int anArray)
+{
+	int nNo = 0;
+	int nPlace = 戦闘_敵場所(nターゲット);
+	if (!anArray.Empty())
+	{
+		anArray.Free();
+	}
+	if (nPlace >= 1 && nPlace <= 3)
+	{
+		anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(nPlace + 3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+	}
+	if (nPlace >= 4 && nPlace <= 6)
+	{
+		nNo = 戦闘_敵武将(nPlace - 3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+		anArray.PushBack(nターゲット);
+	}
+	nPlace = 戦闘_味方場所(nターゲット-10);
+	if (nPlace >= 1 && nPlace <= 3)
+	{
+		anArray.PushBack(nターゲット-10);
+		nNo = 戦闘_味方武将(nPlace + 3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+	}
+	if (nPlace >= 4 && nPlace <= 6)
+	{
+		nNo = 戦闘_味方武将(nPlace - 3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+		anArray.PushBack(nターゲット-10);
+	}
+	return anArray.Numof();
+}

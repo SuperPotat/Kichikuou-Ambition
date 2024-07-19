@@ -1,0 +1,58 @@
+int getIconNo(int nType)
+{
+	switch (nType)
+	{
+		case 1:
+			return 10161;
+		case 2:
+			return 10160;
+		case 3:
+			return 10162;
+		case 4:
+			return 10164;
+		case 5:
+			return 10163;
+		case 6:
+			return 10165;
+		case 7:
+			return 10167;
+		case 8:
+			return 10168;
+		case 9:
+			return 10166;
+		case 10:
+			return 10170;
+		case 11:
+			return 10179;
+		case 12:
+			return 10178;
+		case 13:
+			return 10169;
+		case 23:
+			return 10721;
+		case 26:
+		case 27:
+			return 10158;
+		case 28:
+			return 10718;
+		case 29:
+			return 10719;
+		case 30:
+			return 10730;
+		case 31:
+			return 10720;
+		case 32:
+			return 10722;
+		case 33:
+			return 10724;
+		case 24:
+			return 10159;
+		case 25:
+			return 10725;
+		case 20:
+			return 10726;
+		default:
+			break;
+	}
+	return 0;
+}

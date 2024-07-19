@@ -1,0 +1,39 @@
+lint “Gƒ^[ƒ“•«•â[(lint ii2)
+{
+	lint aa = 0;
+	lint iic2 = 0;
+	lint iic = 0;
+	LOG_TADA("—@İ–ì‘qŒÉ@" + string(ƒLƒƒƒ‰”(21)) + "–¼\n");
+	if (ƒLƒƒƒ‰”(21) != 0 && RAND(2) == 1 && ii2 != 17 && ii2 != 16 && ii2 != 2)
+	{
+		iic2 = —ƒLƒƒƒ‰æ“¾(21, 0, 0);
+		iic = ¨—Í‹ó‚«”Ô†(ii2);
+		if (iic2 != 0 && iic != 0)
+		{
+			aa = 1;
+			gs[ii2][iic] = gs[21][iic2];
+			gs[ii2][iic].•º” = gs[ii2][iic].•º”Å‘å;
+			if (gs[ii2][iic].Š‘®¨—Í == 1)
+			{
+				gs[ii2][iic].Š‘®¨—Í = ii2;
+			}
+			gs[21][iic2].”Ô† = 0;
+		}
+	}
+	if (aa == 0)
+	{
+		iic = —•«“o˜^(ii2, 0, 0, "", 0);
+		¨—Í[ii2].c’Ç‰Á•«--;
+	}
+	if (iic != 0)
+	{
+		if (Ÿ—\”õ‚O‚T == 0)
+		{
+			‚o¨—ÍŠÅ”Â(ii2, gs[ii2][iic].–¼‘O + "[" + •¶š—ñ^•ºí(gs[ii2][iic].•ºí) + "] joins the army", 0, false);
+		}
+		‚o¨—ÍŠÅ”Â^XV();
+		return iic;
+	}
+	return 0;
+	return 0;
+}

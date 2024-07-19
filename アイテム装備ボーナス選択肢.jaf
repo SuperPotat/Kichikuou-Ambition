@@ -1,0 +1,20 @@
+void アイテム装備ボーナス選択肢(lint aa, lint bb, lint 価値)
+{
+	string 文字列 = "";
+	if (クリアフラグ(bb, 0) == 0 && bb != 0)
+	{
+		選択肢(aa + 200, "？ Item not yet available", 0);
+		g_sSelect.setDisabled(aa + 200, 1);
+		return;
+	}
+	文字列 = アイテム[aa].名前;
+	int cost = 価値;
+	int num = aa + 0;
+	if (アイテム[aa].個数 == 1)
+	{
+		cost = -cost;
+		num += 100;
+	}
+	string bonusString = FormatBonusString(文字列, cost);
+	選択肢(num, bonusString, 0);
+}

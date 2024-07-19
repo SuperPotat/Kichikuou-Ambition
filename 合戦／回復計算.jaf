@@ -1,0 +1,241 @@
+lint 合戦／回復計算(ref lint DDD, lint iic, lint iic2, lint bb)
+{
+	lint ▲治療数 = 0;
+	lint ▲最大治療数 = 0;
+	lint ii = 0;
+	lint aa = 0;
+	lint rr = 0;
+	lint aa1 = 0;
+	lint aa2 = 0;
+	lint aa3 = 0;
+	lint ▲攻撃側 = 0;
+	lint ▲防御側 = 0;
+	lint ▲回復Ａ = 0;
+	lint ▲回復付与倍率 = 0;
+	if (◆合戦味方ターン == 1)
+	{
+		▲攻撃側 = 1;
+		▲防御側 = 2;
+	}
+	else
+	{
+		▲攻撃側 = 2;
+		▲防御側 = 1;
+	}
+	◆味方ＥＦ = 0;
+	◆敵ＥＦ = 0;
+	if (◆ＤＢＶ == 1)
+	{
+		LOG_TADA("\n");
+		LOG_TADA("■回復系処理\n");
+		LOG_TADA(gs[ii][iic].名前 + "　＞＞　" + gs[ii][iic2].名前 + "\n");
+		LOG_TADA("　行動［" + 行動名前[bb] + "］　番号：" + string(bb) + "\n");
+	}
+	if (◆戦闘タイプ == 1)
+	{
+		DDD = gs[ii][iic].Ｓレベル * 5;
+		if (gs[ii][iic].知力付与 != 0)
+		{
+			DDD = 倍率計算関数(DDD, 150);
+		}
+		if (bb == 81 || bb == 84)
+		{
+			DDD = 999;
+		}
+		if (bb == 346)
+		{
+			DDD = 300;
+		}
+		if (bb == 149)
+		{
+			gs[ii][iic2].戦場生死確率 -= 10;
+			gs[ii][iic2].Ｆ生死処理 = 2;
+		}
+		if (bb == 163)
+		{
+			DDD = 9999;
+			gs[ii][iic2].現在技数 = gs[ii][iic2].技数;
+			gs[ii][iic].技１ = 0;
+		}
+		if (bb == 56 && gs[ii][iic2].番号 == 1003 && (gs[ii][iic].番号 == 1059 || gs[ii][iic].番号 == 1017))
+		{
+			DDD = DDD * 2;
+			gs[ii][iic2].現在技数++;
+			if (gs[ii][iic2].現在技数 > gs[ii][iic2].技数)
+			{
+				gs[ii][iic2].現在技数 = gs[ii][iic2].技数;
+			}
+		}
+		if (bb == 396)
+		{
+			DDD = gs[ii][iic].Ｓ体力最大 / 10;
+		}
+		if (bb == 222 || bb == 344)
+		{
+			if (gs[ii][iic2].ＦＦ == 99 && gs[ii][iic2].現在技数 == 0 && gs[ii][iic2].Ｓ体力 != 0 && gs[ii][iic2].兵数 != 0)
+			{
+				gs[ii][iic].ＦＦ = 0;
+			}
+			gs[ii][iic2].現在技数++;
+			if (gs[ii][iic2].現在技数 > gs[ii][iic2].技数)
+			{
+				gs[ii][iic2].現在技数 = gs[ii][iic2].技数;
+			}
+			gs[ii][iic2].予備１ = 1;
+		}
+		if (bb == 388)
+		{
+			gs[ii][iic2].攻撃付与 = 10;
+			gs[ii][iic2].防御付与 = 10;
+			gs[ii][iic2].知力付与 = 10;
+		}
+		if (bb == 56)
+		{
+			if (◆戦闘タイプ == 0 && gs[ii][iic2].個人 == 0)
+			{
+				DDD = 倍率計算関数(gs[ii][iic2].兵数最大, 20);
+			}
+			if (◆戦闘タイプ == 1 || gs[ii][iic2].個人 == 1)
+			{
+				DDD = 倍率計算関数(gs[ii][iic2].Ｓ体力最大, 20);
+			}
+		}
+		if (bb == 357)
+		{
+			if (gs[ii][iic].兵数 > (gs[ii][iic].兵数最大/2))
+			{
+				if (◆戦闘タイプ == 0 && gs[ii][iic2].個人 == 0)
+				{
+					DDD = 倍率計算関数(gs[ii][iic2].兵数最大, 50);
+				}
+				if (◆戦闘タイプ == 1 || gs[ii][iic2].個人 == 1)
+				{
+					DDD = 倍率計算関数(gs[ii][iic2].Ｓ体力最大, 50);
+				}
+				gs[ii][iic].兵数 = gs[ii][iic].兵数 - 倍率計算関数(gs[ii][iic].兵数最大, 50);
+			}
+		}
+		if (bb == 166 && (gs[ii][iic2].番号 == 1000 || gs[ii][iic2].番号 == 1112 || gs[ii][iic2].番号 == 1114 || gs[ii][iic2].番号 == 1380))
+		{
+			gs[ii][iic2].現在技数++;
+			if (gs[ii][iic2].現在技数 > gs[ii][iic2].技数)
+			{
+				gs[ii][iic2].現在技数 = gs[ii][iic2].技数;
+			}
+		}
+		if (◆ＤＢＶ == 1)
+		{
+			LOG_TADA("　回復計算　" + string(DDD) + "");
+			if (gs[ii][iic].知力付与 != 0)
+			{
+				LOG_TADA("／知力付与");
+			}
+			LOG_TADA("\n");
+		}
+		return 0;
+	}
+	▲回復Ａ = gs[ii][iic].知力 * 6;
+	aa2 = gs[ii][iic].兵数;
+	▲回復付与倍率 = 100 + gs[ii][iic].知力付与;
+	aa1 = 倍率計算関数(▲回復Ａ, ▲回復付与倍率);
+	if (◆ＤＢＶ == 1)
+	{
+		LOG_TADA("　回復計算　" + string(aa1) + "　＝　" + string(▲回復Ａ) + "(" + string(▲回復付与倍率) + ")\n");
+	}
+	aa1 = 人数計算(aa1, aa2);
+	DDD = 倍率計算関数(aa1, 行動ダメージ率[bb]);
+	if (◆ＤＢＶ == 1)
+	{
+		LOG_TADA("　回復計算　" + string(aa1) + "　＝　［技による倍率" + string(行動ダメージ率[bb]) + "％］　\n");
+	}
+	if (bb == 84)
+	{
+		DDD = 999;
+	}
+	if (bb == 346)
+	{
+		DDD = 300;
+	}
+	if (bb == 396)
+	{
+		DDD = gs[ii][iic].兵数最大 / 10;
+	}
+	if (bb == 149)
+	{
+		gs[ii][iic2].戦場生死確率 -= 10;
+		gs[ii][iic2].Ｆ生死処理 = 2;
+	}
+	if (bb == 163)
+	{
+		DDD = 9999;
+		gs[ii][iic2].現在技数 = gs[ii][iic2].技数;
+		gs[ii][iic].技１ = 0;
+	}
+	if (bb == 56)
+		{
+			if (◆戦闘タイプ == 0 && gs[ii][iic2].個人 == 0)
+			{
+				DDD = 倍率計算関数(gs[ii][iic2].兵数最大, 20);
+			}
+			if (◆戦闘タイプ == 1 || gs[ii][iic2].個人 == 1)
+			{
+				DDD = 倍率計算関数(gs[ii][iic2].Ｓ体力最大, 20);
+			}
+		}
+	if (bb == 166 && (gs[ii][iic2].番号 == 1000 || gs[ii][iic2].番号 == 1112 || gs[ii][iic2].番号 == 1114 || gs[ii][iic2].番号 == 1380))
+	{
+		gs[ii][iic2].現在技数++;
+		if (gs[ii][iic2].現在技数 > gs[ii][iic2].技数)
+		{
+			gs[ii][iic2].現在技数 = gs[ii][iic2].技数;
+		}
+	}
+	if (bb == 222 || bb == 344)
+	{
+		if (gs[ii][iic2].ＦＦ == 99 && gs[ii][iic2].現在技数 == 0 && gs[ii][iic2].Ｓ体力 != 0 && gs[ii][iic2].兵数 != 0)
+		{
+			gs[ii][iic].ＦＦ = 0;
+		}
+		gs[ii][iic2].現在技数++;
+		if (gs[ii][iic2].現在技数 > gs[ii][iic2].技数)
+		{
+			gs[ii][iic2].現在技数 = gs[ii][iic2].技数;
+		}
+		gs[ii][iic2].予備１ = 1;
+	}
+	if (bb == 388)
+	{
+		gs[ii][iic2].攻撃付与 = 10;
+		gs[ii][iic2].防御付与 = 10;
+		gs[ii][iic2].知力付与 = 10;
+	}
+	if (bb == 357)
+	{
+		if (gs[ii][iic].兵数 > (gs[ii][iic].兵数最大/2))
+		{
+			if (◆戦闘タイプ == 0 && gs[ii][iic2].個人 == 0)
+			{
+				DDD = 倍率計算関数(gs[ii][iic2].兵数最大, 50);
+			}
+			if (◆戦闘タイプ == 1 || gs[ii][iic2].個人 == 1)
+			{
+				DDD = 倍率計算関数(gs[ii][iic2].Ｓ体力最大, 50);
+			}
+			gs[ii][iic].兵数 = gs[ii][iic].兵数 - 倍率計算関数(gs[ii][iic].兵数最大, 50);
+		}
+	}
+	if (gs[ii][iic2].個人 == 0)
+	{
+		▲最大治療数 = gs[ii][iic2].兵数合戦 - gs[ii][iic2].兵数;
+		if (▲最大治療数 < DDD)
+		{
+			DDD = ▲最大治療数;
+		}
+	}
+	if (◆ＤＢＶ == 1)
+	{
+		LOG_TADA("　回復計算　" + string(DDD) + "　回復\n");
+	}
+	return 0;
+	return 0;
+}

@@ -1,0 +1,109 @@
+string •¶š—ñ^•ºí(int aa)
+{
+	if (aa == 1)
+	{
+		return "Warrior";
+	}
+	if (aa == 2)
+	{
+		return "Cavalry";
+	}
+	if (aa == 3)
+	{
+		return "Guard";
+	}
+	if (aa == 4)
+	{
+		return "Musketeer";
+	}
+	if (aa == 5)
+	{
+		return "Archer";
+	}
+	if (aa == 6)
+	{
+		return "Ninja";
+	}
+	if (aa == 7)
+	{
+		return "Brawler";
+	}
+	if (aa == 8)
+	{
+		return "Onmyouji";
+	}
+	if (aa == 9)
+	{
+		return "Healer";
+	}
+	if (aa == 10)
+	{
+		return "Knight";
+	}
+	if (aa == 11)
+	{
+		return "Mage";
+	}
+	if (aa == 12)
+	{
+		return "Cannon";
+	}
+	if (aa == 13)
+	{
+		return "Tactician";
+	}
+	if (aa == 20)
+	{
+		return "Animal";
+	}
+	if (aa == 21)
+	{
+		return "Youkai";
+	}
+	if (aa == 22)
+	{
+		return "Monster";
+	}
+	if (aa == 23)
+	{
+		return "Hanny";
+	}
+	if (aa == 24)
+	{
+		return "Civilian";
+	}
+	if (aa == 25)
+	{
+		return "Infected";
+	}
+	if (aa == 32)
+	{
+		return "‚o‚f";
+	}
+	if (aa == 33)
+	{
+		return "Horus";
+	}
+	if (aa == 27)
+	{
+		return "M.WARRIOR";
+	}
+	if (aa == 28)
+	{
+		return "M.GUARD";
+	}
+	if (aa == 29)
+	{
+		return "M.ARCHER";
+	}
+	if (aa == 30)
+	{
+		return "M.NINJA";
+	}
+	if (aa == 31)
+	{
+		return "M.MAGE";
+	}
+	return "HH";
+	return "";
+}

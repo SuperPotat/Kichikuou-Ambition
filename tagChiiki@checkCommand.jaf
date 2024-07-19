@@ -1,0 +1,13 @@
+bool tagChiiki::checkCommand(int nNo)
+{
+	if (nNo > 1599 && nNo < 1700)
+	{
+		return true;
+	}
+	if (変数_コマンド実行数() > 0)
+	{
+		return true;
+	}
+	通知("No action fan available", "", "", "Okay");
+	return false;
+}

@@ -1,0 +1,260 @@
+lint ‹Z”\‚Pˆ—(lint fg, lint iic)
+{
+	lint ck = 0;
+	lint rr = 0;
+	lint ii = 0;
+	lint ƒLƒƒƒ‰ = 0;
+	ii = Ÿ‚o‚‰‚‰;
+	ƒLƒƒƒ‰ = gs[ii][iic].”Ô†;
+	if (fg == 0)
+	{
+		if (gs[ii][iic].‹Z‚P != 0)
+		{
+			‘I‘ğˆ(0, s“®–¼‘O[gs[ii][iic].‹Z‚P] + ": Change", -1);
+		}
+		else
+		{
+			‘I‘ğˆ(0, "Gain ability", -1);
+		}
+	}
+	if (gs[ii][iic].•ºí == 1 || gs[ii][iic].•ºí == 27)
+	{
+		ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 96);
+	}
+	if (gs[ii][iic].•ºí == 3 || gs[ii][iic].•ºí == 28 || gs[ii][iic].•ºí == 23)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 21);
+		}
+		if (gs[ii][iic].‹Z‚P == 21)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 22);
+		}
+		if (gs[ii][iic].‹Z‚P == 21)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 23);
+		}
+		if (gs[ii][iic].‹Z‚P == 23)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 277);
+		}
+		if (gs[ii][iic].‹Z‚P == 22)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 273);
+		}
+		if (gs[ii][iic].‹Z‚P == 22)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 274);
+		}
+		if (gs[ii][iic].‹Z‚P == 22)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 275);
+		}
+		if (gs[ii][iic].‹Z‚P == 63)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 62);
+		}
+		if (gs[ii][iic].‹Z‚P == 62)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 61);
+		}
+		if (gs[ii][iic].‹Z‚P == 62)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 135);
+		}
+	}
+	if (gs[ii][iic].•ºí == 2)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 25);
+		}
+		if (gs[ii][iic].‹Z‚P == 25)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 20);
+		}
+	}
+	if (gs[ii][iic].•ºí == 9)
+	{
+		if (gs[ii][iic].‹Z‚P == 50)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 52);
+		}
+		if (gs[ii][iic].‹Z‚P == 50)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 51);
+		}
+		if (gs[ii][iic].‹Z‚P == 50)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 141);
+		}
+		if (gs[ii][iic].‹Z‚P == 51)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 222);
+		}
+	}
+	if (gs[ii][iic].•ºí == 7)
+	{
+		if (gs[ii][iic].‹Z‚P == 58)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 126);
+		}
+	}
+	if (gs[ii][iic].•ºí == 6)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 37);
+		}
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 154);
+		}
+		if (gs[ii][iic].‹Z‚P == 154)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 155);
+		}
+		if (gs[ii][iic].‹Z‚P == 155)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 156);
+		}
+	}
+	if (gs[ii][iic].•ºí == 8)
+	{
+		if (gs[ii][iic].‹Z‚P == 3)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 374);
+		}
+		if (gs[ii][iic].‹Z‚P == 3)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 375);
+		}
+		if (gs[ii][iic].‹Z‚P == 374)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 143);
+		}
+		if (gs[ii][iic].‹Z‚P == 375)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 143);
+		}
+	}
+	if (gs[ii][iic].•ºí == 11)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 4);
+		}
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 265);
+		}
+		if (gs[ii][iic].‹Z‚P == 0 && ƒLƒƒƒ‰ == 1059)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 56);
+		}
+	}
+	if (gs[ii][iic].•ºí == 31)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 56);
+		}
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 63);
+		}
+		if (gs[ii][iic].‹Z‚P == 63)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 62);
+		}
+		if (gs[ii][iic].‹Z‚P == 62)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 61);
+		}
+		if (gs[ii][iic].‹Z‚P == 62)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 135);
+		}
+		if (gs[ii][iic].‹Z‚P == 135)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 60);
+		}
+	}
+	if (gs[ii][iic].•ºí == 13 || gs[ii][iic].•ºí == 23)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 63);
+		}
+		if (gs[ii][iic].‹Z‚P == 63)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 62);
+		}
+		if (gs[ii][iic].‹Z‚P == 62)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 61);
+		}
+		if (gs[ii][iic].‹Z‚P == 62)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 135);
+		}
+		if (gs[ii][iic].‹Z‚P == 135)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 60);
+		}
+		if (gs[ii][iic].‹Z‚P == 66 && ƒLƒƒƒ‰ == 1403)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 288);
+		}
+	}
+	if (gs[ii][iic].•ºí == 4)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 2);
+		}
+	}
+	if (gs[ii][iic].•ºí == 10)
+	{
+		if (gs[ii][iic].‹Z‚P == 21)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 22);
+		}
+		if (gs[ii][iic].‹Z‚P == 21)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 23);
+		}
+	}
+	if (gs[ii][iic].•ºí == 12)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 300);
+		}
+	}
+	if (gs[ii][iic].•ºí == 5)
+	{
+		if (gs[ii][iic].‹Z‚P == 0)
+		{
+			ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 300);
+		}
+	}
+	if (gs[ii][iic].‹Z‚P == 0 && ƒLƒƒƒ‰ == 1003)
+	{
+		ck = ”\—Í‚t‚o‹Z”\(fg, ii, iic, 163);
+	}
+	if (fg == 0)
+	{
+		‘I‘ğˆ(999, "Go back", -1);
+		rr = ‘I‘ğ(true, 0, 0);
+		if (rr != 999 && rr != 0)
+		{
+			‚b‹Z”\•ÏX(rr, 1, iic, 999, 0);
+			return 1;
+		}
+		return 0;
+	}
+	return ck;
+	return 0;
+}

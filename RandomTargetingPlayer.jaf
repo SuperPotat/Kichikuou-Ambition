@@ -1,0 +1,277 @@
+int RandomTargetingPlayer(int nターゲット, ref array@int anArray)
+{
+	int nNo = 0;
+	int nPlace = 戦闘_敵場所(nターゲット);
+	int ra = 0;
+	if (!anArray.Empty())
+	{
+		anArray.Free();
+	}
+	if (nPlace == 6)
+	{
+		ra = RAND(5);
+		anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(ra);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+	}
+	if (nPlace == 5)
+	{
+		ra = RAND(5);
+		
+		if (ra == 1)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(1);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 2)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(2);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 3)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 4)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(4);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 5)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(6);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}	
+	}
+	
+	if (nPlace == 4)
+	{
+		ra = RAND(5);
+		
+		if (ra == 1)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(1);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 2)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(2);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 3)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 4)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(5);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 5)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(6);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}	
+	}
+	
+	if (nPlace == 3)
+	{
+		ra = RAND(5);
+		
+		if (ra == 1)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(1);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 2)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(2);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 3)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(4);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 4)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(5);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 5)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(6);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}	
+	}
+	
+	if (nPlace == 2)
+	{
+		ra = RAND(5);
+		
+		if (ra == 1)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(1);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 2)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 3)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(4);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 4)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(5);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 5)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(6);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}	
+	}
+	
+	if (nPlace == 1)
+	{
+		ra = RAND(5);
+		
+		if (ra == 1)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(2);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 2)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(3);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 3)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(4);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 4)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(5);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}
+			if (ra == 5)
+			{
+				anArray.PushBack(nターゲット);
+		nNo = 戦闘_敵武将(6);
+		if (nNo > 0)
+		{
+			anArray.PushBack(nNo);
+		}
+			}	
+	}
+	
+	
+	return anArray.Numof();
+}

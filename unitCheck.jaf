@@ -1,0 +1,11 @@
+bool unitCheck(int unitID, int currentFaction, int targetFaction)
+{
+	switchControl(targetFaction);
+	if (ƒLƒƒƒ‰Šm”F(unitID, 0, 0, 0))
+	{
+		switchControl(currentFaction);
+		return false;
+	}
+	switchControl(currentFaction);
+	return true;
+}

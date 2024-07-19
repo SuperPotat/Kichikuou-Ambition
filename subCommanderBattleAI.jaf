@@ -1,0 +1,131 @@
+lint subCommanderBattleAI(int skill, int n武将番号, ref array@int anArray)
+{
+	敵ターゲット_クリア(n武将番号); //clears targetting variables
+	int i = 0;
+	int j = 0;
+	int iStartEn = 11;
+	int iEndEn = 16;
+	int iStartAl = 21;
+	int iEndAl = 26;
+	if (n武将番号 < 20) {
+		iStartEn = iStartEn + 10;
+		iEndEn = iEndEn + 10;
+		iStartAl = iStartAl - 10;
+		iEndAl = iEndAl - 10;
+	}
+	/*array@int chSkills;
+	chSkills.PushBack(キャラ_技１(0, n武将番号));
+	chSkills.PushBack(キャラ_技２(0, n武将番号));
+	chSkills.PushBack(キャラ_技３(0, n武将番号));
+	chSkills.PushBack(キャラ_技４(0, n武将番号));*/
+	int nターゲット = 0;
+	int nType = 行動_タイプ(skill);
+	int nTarget = 行動_ターゲット(skill);
+	array@int anTargetNo;
+	int cnt = 0;
+	switch (nTarget)
+	{
+		case 4: //self-target - targets the unit they are a part of?
+			if (!合戦_壊滅状態(n武将番号))
+			{
+				nターゲット = n武将番号; //usually would be this...
+			}
+			else
+			{
+				return 0;
+			}
+			break;
+		case 1:
+		case 2:
+		case 5:
+		case 6:
+		case 10:
+		case 11:
+			for (i = iStartEn; i <= iEndEn; ++i)
+			{
+				if ((nTarget == 1 || nTarget == 5 || nTarget == 6 || nTarget == 10) && ((n武将番号 < 20 && (!戦闘_敵前衛(i) || !戦闘_味方前衛(n武将番号))) || (n武将番号 > 20 && (!戦闘_味方前衛(i) || !戦闘_敵前衛(n武将番号)))))
+				{
+					continue;
+				}
+				if (合戦_壊滅状態(i))
+				{
+					continue;
+				}
+				anTargetNo.PushBack(i);
+			}
+			cnt = anTargetNo.Numof();
+			if (cnt > 0)
+			{
+				nターゲット = anTargetNo[乱数(cnt) - 1];
+			}
+			else
+			{
+				return 0; //no valid targets
+			}
+			break;
+		case 3:
+		case 12: //ally row
+		case 13: //ally column
+			if (nType == 4)
+			{
+				for (j = 80; j >= 0; j -= 20)
+				{
+					for (i = iStartAl; i <= iEndAl; ++i)
+					{
+						if (合戦_壊滅状態(i))
+						{
+							continue;
+						}
+						if (キャラ_ダメージ率(0, i) >= j)
+						{
+							anTargetNo.PushBack(i);
+						}
+					}
+					cnt = anTargetNo.Numof();
+					if (cnt > 0)
+					{
+						nターゲット = anTargetNo[乱数(cnt) - 1];
+					}
+					else
+					{
+						return 0; //no valid targets
+						//nターゲット = n武将番号;
+					}
+				}
+			}
+			else
+			{
+				for (i = iStartAl; i <= iEndAl; ++i)
+				{
+					if (合戦_壊滅状態(i))
+					{
+						continue;
+					}
+					anTargetNo.PushBack(i);
+				}
+				cnt = anTargetNo.Numof();
+				if (cnt > 0)
+				{
+					nターゲット = anTargetNo[乱数(cnt) - 1];
+				}
+				else
+				{
+					return 0; //no valid targets
+					//nターゲット = n武将番号;
+				}
+			}
+			break;
+		case 7:
+		case 8:
+		default:
+			nターゲット = 0;
+			return 1;
+			break;
+	}
+	if (nターゲット > 0)
+	{
+		g_sBattleTeki.setTargetNo(skill, nターゲット);
+		return 1;
+	}
+	return 0;
+}

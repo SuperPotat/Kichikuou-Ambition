@@ -1,0 +1,33 @@
+int 戦闘_味方col(int nターゲット, ref array@int anArray)
+{
+	int nNo = 0;
+	int i = 0;
+	int nPlace = 戦闘_味方場所(nターゲット);
+	if (!anArray.Empty())
+	{
+		anArray.Free();
+	}
+	if (nPlace >= 1 && nPlace <= 3)
+	{
+		for (i = 1; i <= 3; ++i)
+		{
+			nNo = 戦闘_味方武将(i);
+			if (nNo > 0)
+			{
+				anArray.PushBack(nNo);
+			}
+		}
+	}
+	if (nPlace >= 4 && nPlace <= 6)
+	{
+		for (i = 4; i <= 6; ++i)
+		{
+			nNo = 戦闘_味方武将(i);
+			if (nNo > 0)
+			{
+				anArray.PushBack(nNo);
+			}
+		}
+	}
+	return anArray.Numof();
+}

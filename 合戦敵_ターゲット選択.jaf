@@ -1,0 +1,107 @@
+int 合戦敵_ターゲット選択(int n武将番号, int n行動, ref array@int anArray)
+{
+	int i = 0;
+	int nNo = 0;
+	int nRet = 0;
+	int nType = 行動_ターゲット(n行動);
+	int nターゲット = 戦闘_ターゲット取得(n武将番号);
+	if (!anArray.Empty())
+	{
+		anArray.Free();
+	}
+	if (nType == 1 || nType == 2)
+	{
+		if (n行動 == 363)
+		{
+			戦闘_ターゲット表示(nターゲット);
+			nRet = 合戦_味方ガード取得(nターゲット);
+			if (nRet > 0)
+			{
+				戦闘ユニット_交代(2, nRet, -1);
+				return RandomTargeting(nRet, anArray);
+				goto label0;
+			}
+			return RandomTargeting(nターゲット, anArray);
+			goto label0;
+		}
+		if (n行動 == 85 || n行動 == 86 || n行動 == 29 || n行動 == 91 || n行動 == 294 || n行動 == 72 || n行動 == 205 || n行動 == 404)
+		{
+			戦闘ユニット_イン(2, nターゲット, -1);
+			nRet = 合戦_味方ガード取得得(nターゲット);
+			if (nRet > 0)
+			{
+				LOG_BATTLE("\n★　味方ガード発動　［" + キャラ_名前(0, nターゲット) + "]");
+				戦闘ユニット_交代(2, nRet, -1);
+				anArray.PushBack(nRet);
+				goto label0;
+			}
+			anArray.PushBack(nターゲット);
+			goto label0;
+		}
+		else
+		{
+			戦闘_ターゲット表示(nターゲット);
+			nRet = 合戦_味方ガード取得(nターゲット);
+			if (nRet > 0)
+			{
+				LOG_BATTLE("\n★　味方ガード発動　［" + キャラ_名前(0, nターゲット) + "]");
+				戦闘ユニット_交代(2, nRet, -1);
+				anArray.PushBack(nRet);
+				goto label0;
+			}
+			anArray.PushBack(nターゲット);
+			goto label0;
+		}
+	}
+	if (nType == 3 || nType == 4)
+	{
+		anArray.PushBack(nターゲット);
+		goto label0;
+	}
+	if (nType == 5 || nType == 6)
+	{
+		if (n行動 == 413)
+		{
+			ＧＦ[195] = (Math.Rand() % 10 + 1);
+			switch (ＧＦ[195])
+			{
+				case 1:
+					return AnnisTargetAI(anArray);
+				case 2:
+					return GoldenDestructionBeamAI(nターゲット, anArray);
+				case 3:
+					return CrossTargeting(nターゲット, anArray);
+				default:
+					continue;
+			}
+		}
+		return 戦闘_味方列(nターゲット, anArray);
+	}
+	if (nType == 12)
+	{
+		return 戦闘_敵列(nターゲット, anArray);
+	}
+	if (nType == 13)
+	{
+		return VerticalTargetingPlayer(nターゲット, anArray);
+	}
+	if (nType == 10 || nType == 11)
+	{
+		return VerticalTargeting(nターゲット, anArray);
+	}
+	if (nType == 7)
+	{
+		return 戦闘_味方全体(anArray);
+	}
+	if (nType == 8)
+	{
+		return 戦闘_敵全体(anArray);
+	}
+	if (nType == 14)
+	{
+		return CrossTargeting(nターゲット, anArray);
+	}
+label0:
+	return anArray.Numof();
+	return 0;
+}

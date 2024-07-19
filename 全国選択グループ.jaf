@@ -1,0 +1,2595 @@
+lint 全国選択グループ(lint ff, lint iim)
+{
+	lint tt = 0; // 1600 and above yet below 1700 constitutes 'free actions', costs no AF, up to 1615 used
+	lint iic = 0;
+	lint rr = 0;
+	lint ch = 0;
+	lint aa = 0;
+	lint bb = 0;
+	lint cc = 0;
+	lint ss = 0;
+	lint loop = 0;
+	lint loop2 = 0;
+	lint aa1 = 0;
+	lint ra = 0;
+	lint iic2 = 0;
+	lint ch2 = 0;
+	lint ii = ◆Ｐｉｉ;
+	lint Chungus = 0;
+	lint ii2 = 国[iim].支配国;
+	lint ii3 = 0;
+	lint iim2 = 0;
+	lint ▲状態 = 0;
+	lint ▲不戦勝 = 0;
+	lint ▲戦場 = 0;
+	lint ▲合戦結果 = 0;
+	lint i = 0;
+	lint nNo = 0;
+	string text1 = "";
+	string text2 = "";
+	合戦フラグ初期化(0);
+	◆戦闘タイプ = 0;
+	◆迷宮戦闘 = 0;
+	◆戦場国タイプ = iim;
+	◆戦場対戦国 = ii2;
+	array@lint 重複[10];
+	string text = "";
+	if (ii2 != ◆Ｐｉｉ)
+	{
+		▲状態 = 勢力[ii].国状態[ii2];
+	}
+	lint ▲隣接 = 0;
+	if (checkAdjacency(ii, iim))
+	{
+		▲隣接 = ▲状態;
+	}
+	string 文字列 = "";
+	tt = 100;
+	if (国[iim].国予備２ == 0)
+	{
+		ss = 9;
+	}
+	if (国[iim].国予備２ != 0)
+	{
+		ss = 3;
+		Ｃ難易度[cc] = 国[iim].国予備２;
+	}
+	if (▲状態 == 2 && ▲隣接 == 2)
+	{
+		if (織田選択(ff, tt, 勢力[ii2].名前 + " (Attack)", 0, ss) == 1)
+		{
+			if (国[iim].国予備２ != 0)
+			{
+				rr = 成否判定(iim, cc, ss, "Barrier", 4, 10354);
+				if (rr != 2)
+				{
+					return rr;
+				}
+				国[iim].国予備２--;
+			}
+			rr = 合戦メイン(1, ii2, iim);
+			if (rr == 0)
+			{
+				return 0;
+			}
+			return 1;
+		}
+	}
+	tt = 101;
+	ss = 9;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 失った土地(iim) != 0 && 勢力[ii].国状態[国[iim].進入勢力] == 2)
+	{
+		if (織田選択(ff, tt, 勢力[国[iim].進入勢力].名前 + " (Retake territory)", cc, ss) == 1)
+		{
+			ii2 = 国[iim].進入勢力;
+			rr = 合戦メイン(1, ii2, iim);
+			if (rr == 0)
+			{
+				return 0;
+			}
+			return 1;
+		}
+	}
+	tt = 103;
+	cc = iim + 150;
+	ss = 3;
+	Ｃ難易度[cc] = 国[iim].国力 * 3;
+	if (Ｃ難易度[cc] > 99)
+	{
+		Ｃ難易度[cc] = 99;
+	}
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].国力 != 0)
+	{
+		if (織田選択(ff, tt, 国[iim].名前 + ": Development (Increase national power)", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Increase national power", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			ＳＭ(5014, 2, iim);
+			return 1;
+		}
+	}
+	tt = 104;
+	cc = 576;
+	ss = 3;
+	Ｃ難易度[cc] = 10;
+	if (国[iim].支配国 == ◆Ｐｉｉ)
+	{
+		if (織田選択(ff, tt, "Build barrier (Rank " + string(国[iim].国予備２) + ")", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Barrier", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			ＳＭ(5078, 1, iim);
+			国[iim].国予備２++;
+			if (国[iim].国予備２ > 9)
+			{
+				国[iim].国予備２ = 9;
+			}
+			return 1;
+		}
+	}
+	tt = 1601;
+	if ((▲状態 != 9 || ▲状態 != 3) && ＧＦ[gfplayerkuni(ii2)] > 0)
+	{
+		if (織田選択(ff, tt, 勢力[ii2].名前 + ": Make a trade", cc, ss) == 1)
+		{
+			ＧＦ[910] = 1;
+			lint tradeFirstPlayer = 1;
+			lint tradeGoldValue1 = 0;
+			lint tradeGoldValue2 = 0;
+			lint tradeProvinceMenuStart = 0;
+			array@int playerProvinces;
+			array@int playerProvincesValues1;
+			array@int playerProvincesValues2;
+			array@int playerProvincesTrade;
+			lint tradeProvincesCnt = 0;
+			string tradeProvincesString = "";
+			lint tradeii = ii;
+			lint tradeii2 = ii2;
+			ＦＰ初期化();
+			敵ＦＰ初期化();
+		label0:
+			if (tradeFirstPlayer == 1)
+			{
+				選択肢(0, "What would you like to trade?", -1);
+			}
+			else
+			{
+				選択肢(0, "What are you willing to give for it?", -1);
+			}
+			選択肢(1, "Commanders", -1);
+			選択肢(2, "Gold", -1);
+			選択肢(3, "Provinces", -1);
+			選択肢(998, "Make your proposal", -1);
+			選択肢(999, "Cancel trade", -1);
+			rr = 選択(true, 0, 0);
+			if (rr == 999 || rr == 0)
+			{
+			label1:
+				ＧＦ[910] = 0;
+				switchControl(ii);
+				◆コマンド実行数++;
+				return 0;
+			}
+			if (rr == 1)
+			{
+				rr = Ｐ武将／参加選択(1, 0, 1, tradeii, 9, 99999);
+				bb = 0;
+				for (loop = 11; loop < 17; loop++)
+				{
+					if (キャラ_番号(0, loop) <= 0)
+					{
+						continue;
+					}
+					gs[tradeii][gs[0][loop].ＢＢ].行動 = 0;
+					bb++;
+				}
+				if (30 - キャラ数(tradeii2) < bb)
+				{
+					効果音(136, false);
+					ＰＳＭ(0, "Not enough free spaces", "So? Do you want me or not?!@Make up your mind...", "");
+					ＦＰ初期化();
+				}
+				goto label0;
+			}
+			if (rr == 2)
+			{
+				for (; ; )
+				{
+					選択肢(0, "How much would you like to give?", -1);
+					選択肢(0, "Gold to trade: " + string(tradeGoldValue1), -1);
+					選択肢(1, "+5000 Gold", -1);
+					選択肢(2, "+500 Gold", -1);
+					選択肢(3, "+100 Gold", -1);
+					選択肢(4, "-100 Gold", -1);
+					選択肢(5, "-500 Gold", -1);
+					選択肢(6, "-5000 Gold", -1);
+					選択肢(20, "Reset to 0", -1);
+					選択肢(99, "Confirm amount", -1);
+					rr = 選択(true, 0, 0);
+					if (rr == 99 || rr == 0)
+					{
+						goto label0;
+					}
+					if (rr == 20)
+					{
+						tradeGoldValue1 = 0;
+					}
+					if (rr == 1)
+					{
+						if (◆金 < tradeGoldValue1 + 5000)
+						{
+							tradeGoldValue1 = ◆金;
+						}
+						else
+						{
+							tradeGoldValue1 += 5000;
+						}
+					}
+					if (rr == 2)
+					{
+						if (◆金 < tradeGoldValue1 + 500)
+						{
+							tradeGoldValue1 = ◆金;
+						}
+						else
+						{
+							tradeGoldValue1 += 500;
+						}
+					}
+					if (rr == 3)
+					{
+						if (◆金 < tradeGoldValue1 + 100)
+						{
+							tradeGoldValue1 = ◆金;
+						}
+						else
+						{
+							tradeGoldValue1 += 100;
+						}
+					}
+					if (rr == 4)
+					{
+						tradeGoldValue1 -= 100;
+					}
+					if (rr == 5)
+					{
+						tradeGoldValue1 -= 500;
+					}
+					if (rr == 6)
+					{
+						tradeGoldValue1 -= 5000;
+					}
+				}
+			}
+			if (rr == 3)
+			{
+				tradeProvincesCnt = playerProvinces.Numof();
+				if (tradeProvincesCnt < 1)
+				{
+					for (iim2 = 1; iim2 < 33; iim2++)
+					{
+						if (国[iim2].支配国 == tradeii)
+						{
+							playerProvinces.PushBack(iim2);
+							playerProvincesTrade.PushBack(0);
+						}
+					}
+					tradeProvincesCnt = playerProvinces.Numof();
+				}
+				tradeProvinceMenuStart = 0;
+				for (; ; )
+				{
+					選択肢(0, "Select which provinces to trade", -1);
+					ra = tradeProvincesCnt;
+					if (tradeProvincesCnt > tradeProvinceMenuStart + 11)
+					{
+						ra = tradeProvinceMenuStart + 11;
+					}
+					for (i = tradeProvinceMenuStart + 1; i < ra + 1; i++)
+					{
+						if (playerProvincesTrade[i - 1] == 0)
+						{
+							選択肢(i, "□ " + 国_名前(playerProvinces[i - 1]), 0);
+						}
+						if (playerProvincesTrade[i - 1] == 1)
+						{
+							選択肢(i, "■ " + 国_名前(playerProvinces[i - 1]), 0);
+						}
+					}
+					if (tradeProvincesCnt > 11 && tradeProvinceMenuStart == 0 || tradeProvincesCnt > 22 && tradeProvinceMenuStart == 11)
+					{
+						選択肢(997, "Next", -1);
+					}
+					if (tradeProvinceMenuStart > 0)
+					{
+						選択肢(998, "Previous", -1);
+					}
+					選択肢(999, "Confirm provinces", -1);
+					rr = 選択(true, 0, 0);
+					ra = 0;
+					if (rr != 0 && rr < 990)
+					{
+						if (playerProvincesTrade[rr - 1] == 0)
+						{
+							playerProvincesTrade[rr - 1] = 1;
+						}
+						else
+						{
+							playerProvincesTrade[rr - 1] = 0;
+						}
+					}
+					if (rr == 999 || rr == 0)
+					{
+						for (i = 0; i < tradeProvincesCnt; i++)
+						{
+							if (playerProvincesTrade[i] == 0)
+							{
+								ra = 1;
+								break;
+							}
+						}
+						if (ra == 1)
+						{
+							goto label0;
+						}
+						効果音(136, false);
+						ＰＳＭ(0, "Suspicious Transaction Alert", "Can't trade all your provinces. Try again.", "");
+						for (i = 0; i < tradeProvincesCnt; i++)
+						{
+							playerProvincesTrade[i] = 0;
+						}
+						continue;
+					}
+					if (rr == 997)
+					{
+						tradeProvinceMenuStart += 11;
+					}
+					if (rr == 998)
+					{
+						tradeProvinceMenuStart -= 11;
+					}
+				}
+			}
+			if (rr == 998 && tradeFirstPlayer == 1)
+			{
+				for (loop = 11; loop < 17; loop++)
+				{
+					gs[0][loop].行動 = 1;
+					gs[0][loop] <=> gs[0][loop + 10];
+				}
+				switchControlWithPrompt(ii2);
+				g_sTeki.open(ii);
+				選択肢(0, "Do you want this?", -1);
+				選択肢(0, string(tradeGoldValue1) + " Gold", -1);
+				tradeProvincesString = "";
+				if (tradeProvincesCnt > 0)
+				{
+					for (i = 0; i < tradeProvincesCnt; i++)
+					{
+						if (playerProvincesTrade[i] == 1)
+						{
+							playerProvincesValues1.PushBack(playerProvinces[i]);
+							tradeProvincesString = tradeProvincesString + 国_名前(playerProvinces[i]) + ", ";
+						}
+					}
+				}
+				if (tradeProvincesString == "")
+				{
+					tradeProvincesString = "No provinces";
+				}
+				else
+				{
+					tradeProvincesString = tradeProvincesString.GetPart(0, tradeProvincesString.Length() - 2);
+				}
+				選択肢(0, tradeProvincesString, -1);
+				選択肢(1, "Yes", -1);
+				選択肢(2, "No", -1);
+				rr = 選択(false, 0, 0);
+				if (rr == 2)
+				{
+					switchControlWithPrompt(ii);
+					効果音(136, false);
+					ＰＳＭ(0, "They didn't want it.", "Give me something better next time!", "");
+					goto label1;
+				}
+				tradeFirstPlayer = 0;
+				tradeii = ii2;
+				tradeii2 = ii;
+				tradeGoldValue2 = tradeGoldValue1;
+				tradeGoldValue1 = 0;
+				playerProvinces.Free();
+				playerProvincesTrade.Free();
+				tradeProvincesCnt = 0;
+				goto label0;
+			}
+			if (rr == 998 && tradeFirstPlayer == 0)
+			{
+				for (loop = 11; loop < 17; loop++)
+				{
+					gs[0][loop] <=> gs[0][loop + 10];
+				}
+				switchControl(ii);
+				g_sTeki.open(ii2);
+				選択肢(0, "Accept the trade?", -1);
+				選択肢(0, string(tradeGoldValue1) + " Gold", -1);
+				tradeProvincesString = "";
+				if (tradeProvincesCnt > 0)
+				{
+					for (i = 0; i < tradeProvincesCnt; i++)
+					{
+						if (playerProvincesTrade[i] == 1)
+						{
+							playerProvincesValues2.PushBack(playerProvinces[i]);
+							tradeProvincesString = tradeProvincesString + 国_名前(playerProvinces[i]) + ", ";
+						}
+					}
+				}
+				if (tradeProvincesString == "")
+				{
+					tradeProvincesString = "No provinces";
+				}
+				else
+				{
+					tradeProvincesString = tradeProvincesString.GetPart(0, tradeProvincesString.Length() - 2);
+				}
+				選択肢(0, tradeProvincesString, -1);
+				選択肢(1, "Accept", -1);
+				選択肢(2, "Reject", -1);
+				rr = 選択(false, 0, 0);
+				if (rr == 2)
+				{
+					switchControlWithPrompt(ii2);
+					効果音(136, false);
+					ＰＳＭ(0, "Your proposal was rejected.", "Give me someone better next time!", "");
+					goto label1;
+				}
+				switchControlWithPrompt(ii);
+				tradeProvincesCnt = playerProvincesValues1.Numof();
+				if (tradeProvincesCnt > 0)
+				{
+					for (i = 0; i < tradeProvincesCnt; i++)
+					{
+						国[playerProvincesValues1[i]].支配国 = ii2;
+					}
+				}
+				tradeProvincesCnt = playerProvincesValues2.Numof();
+				if (tradeProvincesCnt > 0)
+				{
+					for (i = 0; i < tradeProvincesCnt; i++)
+					{
+						国[playerProvincesValues2[i]].支配国 = ii;
+					}
+				}
+				勢力[ii2].勢力予備８ -= tradeGoldValue1;
+				勢力[ii2].勢力予備８ += tradeGoldValue2;
+				◆金 += tradeGoldValue1;
+				◆金 -= tradeGoldValue2;
+				for (loop = 11; loop < 17; loop++)
+				{
+					if (キャラ_番号(0, loop) <= 0)
+					{
+						continue;
+					}
+					ch = gs[0][loop].ＢＢ;
+					キャラ消去(ch, ii);
+				}
+				for (loop = 21; loop < 27; loop++)
+				{
+					if (キャラ_番号(0, loop) <= 0)
+					{
+						continue;
+					}
+					ch = gs[0][loop].ＢＢ;
+					キャラ消去(ch, ii2);
+				}
+				for (loop = 11; loop < 17; loop++)
+				{
+					if (キャラ_番号(0, loop) <= 0)
+					{
+						continue;
+					}
+					武将強制登録(ii2, gs[0][loop].ＢＢ, 995);
+				}
+				for (loop = 21; loop < 27; loop++)
+				{
+					if (キャラ_番号(0, loop) <= 0)
+					{
+						continue;
+					}
+					武将強制登録(ii2, gs[0][loop].ＢＢ, 994);
+				}
+			}
+			◆コマンド実行数++;
+			ＧＦ[910] = 0;
+			return 1;
+		}
+	}
+	tt = 200;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 0)
+	{
+		if (織田選択(ff, tt, "Build mansion (Troops +1)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 1;
+			return 1;
+		}
+	}
+	tt = 201;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 0)
+	{
+		if (織田選択(ff, tt, "Build free market (Income +3%)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 2;
+			return 1;
+		}
+	}
+	tt = 202;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 0)
+	{
+		if (織田選択(ff, tt, "Build shopping district (Income +200)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 3;
+			return 1;
+		}
+	}
+	tt = 203;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 0)
+	{
+		if (織田選択(ff, tt, "Build hospital (Heals 10 troops)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 4;
+			return 1;
+		}
+	}
+	tt = 204;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 0)
+	{
+		if (織田選択(ff, tt, "Build Ludo statue (???)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 5;
+			return 1;
+		}
+	}
+	tt = 205;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 0)
+	{
+		if (織田選択(ff, tt, "Build control center (Troop max +200)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 6;
+			return 1;
+		}
+	}
+	tt = 1615;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 != 0)
+	{
+		if (国[iim].建築物 == 1)
+		{
+			文字列 = "Mansion";
+		}
+		if (国[iim].建築物 == 2)
+		{
+			文字列 = "Free Market";
+		}
+		if (国[iim].建築物 == 3)
+		{
+			文字列 = "Shopping district";
+		}
+		if (国[iim].建築物 == 4)
+		{
+			文字列 = "Hospital";
+		}
+		if (国[iim].建築物 == 5)
+		{
+			文字列 = "Ludo statue";
+		}
+		if (国[iim].建築物 == 6)
+		{
+			文字列 = "Management";
+		}
+		if (国[iim].建築物 == 10)
+		{
+			文字列 = "Mansion2";
+		}
+		if (国[iim].建築物 == 20)
+		{
+			文字列 = "Free Market2";
+		}
+		if (国[iim].建築物 == 30)
+		{
+			文字列 = "Shopping district2";
+		}
+		if (国[iim].建築物 == 40)
+		{
+			文字列 = "Hospital2";
+		}
+		if (織田選択(ff, tt, 文字列 + ": Destroy", 0, 0) == 1)
+		{
+			国[iim].建築物 = 0;
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 210;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 1 && 支配国数(◆Ｐｉｉ) > 9)
+	{
+		if (織田選択(ff, tt, "Build mansion2 (Troops +3)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 10;
+			return 1;
+		}
+	}
+	tt = 220;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 2 && 支配国数(◆Ｐｉｉ) > 9)
+	{
+		if (織田選択(ff, tt, "Build free market2 (Income +9%)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 20;
+			return 1;
+		}
+	}
+	tt = 230;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 3 && 支配国数(◆Ｐｉｉ) > 9)
+	{
+		if (織田選択(ff, tt, "Build shopping district2 (Income +1000)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 30;
+			return 1;
+		}
+	}
+	tt = 240;
+	if (国[iim].支配国 == ◆Ｐｉｉ && 国[iim].建築物 == 4 && 支配国数(◆Ｐｉｉ) > 9)
+	{
+		if (織田選択(ff, tt, "Build hospital (Heals 50 troops)", 0, 0) == 1)
+		{
+			国[iim].建築物 = 40;
+			return 1;
+		}
+	}
+	tt = 500;
+	if (▲状態 == 2 && ▲隣接 == 2 && ◆Ｐｉｉ == 19 && 勢力[ii2].勢力予備７ == 0)
+	{
+		if (織田選択(ff, tt, 勢力[ii2].名前 + "Rioters ready", 0, 0) == 1)
+		{
+			ＳＭ(5080, 0, ii2);
+			勢力[ii2].勢力予備７ = 1;
+			勢力[ii2].混乱状態 = 1;
+			return 1;
+		}
+	}
+	tt = 1500;
+	cc = ii2 + 200;
+	ss = 2;
+	if (▲状態 == 2 && ▲隣接 == 2)
+	{
+		if (織田選択(ff, tt, 勢力[ii2].名前 + ": Covert action", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Political maneuver", 4, 10355);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			汎用１(乱ＦＰ取得(), 0);
+			ＳＭ(5033, 0, ii2);
+			Ｃ難易度[cc] += RAND(2);
+			if (Ｃ難易度[cc] > 99)
+			{
+				Ｃ難易度[cc] = 99;
+			}
+			return 1;
+		}
+	}
+	tt = 1501;
+	cc = 575;
+	ss = 2;
+	if (Ｃ難易度[cc] == 0)
+	{
+		Ｃ難易度[cc] = 5;
+	}
+	if (▲状態 == 2 && ▲隣接 == 2 && ＧＦ[219] == 1)
+	{
+		if (織田選択(ff, tt, 勢力[ii2].名前 + ": Neutral action", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Neutral action", 4, 10355);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			汎用１(乱ＦＰ取得(), 0);
+			ＳＭ(5077, 0, ii2);
+			if (◆Ｐｉｉ != 4)
+			{
+				Ｃ難易度[cc] += 3;
+			}
+			勢力[ii2].国状態[ii] = 1;
+			勢力[ii].国状態[ii2] = 1;
+			if (勢力[ii2].勢力予備６ == 0)
+			{
+				勢力[ii2].勢力予備６ = 8;
+			}
+			勢力[ii2].勢力予備６ += RAND(5);
+			マップ_情報更新(true);
+			return 1;
+		}
+	}
+	tt = 1502;
+	if (▲状態 == 1)
+	{
+		if (織田選択(ff, tt, "Extend neutral terms (" + string(勢力[ii2].勢力予備６) + ")+2", 0, 0) == 1)
+		{
+			勢力[ii2].勢力予備６ += 2;
+			return 1;
+		}
+	}
+	tt = 1600;
+	aa = 35;
+	if (建築物数(ii, 5) > 1 && ◆予備０４ == 0)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 1;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 36;
+	if (建築物数(ii, 5) > 3 && ◆予備０４ == 1)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 2;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 54;
+	if (建築物数(ii, 5) > 5 && ◆予備０４ == 2)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 3;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 58;
+	if (建築物数(ii, 5) > 7 && ◆予備０４ == 3)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 4;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 61;
+	if (建築物数(ii, 5) > 9 && ◆予備０４ == 4)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 5;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 63;
+	if (建築物数(ii, 5) > 10 && ◆予備０４ == 5)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 6;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 72;
+	if (建築物数(ii, 5) > 11 && ◆予備０４ == 6)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 7;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 77;
+	if (建築物数(ii, 5) > 12 && ◆予備０４ == 7)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 8;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 34;
+	if (建築物数(ii, 5) > 13 && ◆予備０４ == 8)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 9;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 38;
+	if (建築物数(ii, 5) > 15 && ◆予備０４ == 9)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 10;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	aa = 33;
+	if (建築物数(ii, 5) > 17 && ◆予備０４ == 10)
+	{
+		if (織田選択(ff, tt, "Pick up [" + アイテム[aa].名前 + "]", 0, 0) == 1)
+		{
+			◆予備０４ = 11;
+			アイテム取得(aa);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 598;
+	cc = 575;
+	ss = 2;
+	Ｃ難易度[cc] = 10;
+	if (◆Ｐｉｉ == 17 && ＧＦ[255] == 0)
+	{
+		if (織田選択(ff, tt, "Insider trading (Reduce chance of stock loss)", 0, 0) == 1)
+		{
+			ＧＦ[255] = 1;
+			汎用１(1351, 999);
+			▲文字列 = gs[0][1].名前 + " is trading stocks.";
+			▲文字列２ = "This will increase @our economic stability!";
+			ＳＭ(5054, 0, 0);
+			return 1;
+		}
+	}
+	tt = 599;
+	if (キャラ確認(1313, 0, 0, 0) && ＧＦ[254] < 98 && ＧＦ[253] == 1 && 支配国数(◆Ｐｉｉ) > 9)
+	{
+		if (織田選択(ff, tt, "Slaughter Humans (" + string(ＧＦ[254]) + "%)", 0, 0) == 1)
+		{
+			ＧＦ[254] += 2;
+			汎用１(1313, 999);
+			▲文字列 = gs[0][1].名前 + " powers up Escudo.";
+			▲文字列２ = "I, the Hero Arios, will @punish you.";
+			ＳＭ(5054, 0, 0);
+			return 1;
+		}
+	}
+	tt = 1602;
+	if (国[iim].支配国 == ◆Ｐｉｉ && キャラ確認(1451, 0, 0, 0) && ◆ターン % 5 == 1)
+	{
+		if (織田選択(ff, tt, "Kazemaru's growth", 0, 0) == 1)
+		{
+			◆ＴＳ = 1;
+			iic = ＧＳ番号取得(1451, 999);
+			汎用１(1451, 999);
+			ra = RAND(4);
+			if (ra == 1 && gs[◆Ｐｉｉ][iic].攻撃基礎値 < 7)
+			{
+				gs[◆Ｐｉｉ][iic].攻撃基礎値++;
+				フラグ調整();
+				汎用１(iic, 999);
+				ＳＭ(5027, 0, 0);
+				return 1;
+			}
+			if (ra == 2 && gs[◆Ｐｉｉ][iic].防御基礎値 < 7)
+			{
+				gs[◆Ｐｉｉ][iic].防御基礎値++;
+				フラグ調整();
+				汎用１(iic, 999);
+				ＳＭ(5028, 0, 0);
+				return 1;
+			}
+			if (ra == 3 && gs[◆Ｐｉｉ][iic].知力基礎値 < 7)
+			{
+				gs[◆Ｐｉｉ][iic].知力基礎値++;
+				フラグ調整();
+				汎用１(iic, 999);
+				ＳＭ(5029, 0, 0);
+				return 1;
+			}
+			if (ra == 4 && gs[◆Ｐｉｉ][iic].早さ基礎値 < 7)
+			{
+				gs[◆Ｐｉｉ][iic].早さ基礎値++;
+				フラグ調整();
+				汎用１(iic, 999);
+				ＳＭ(5030, 0, 0);
+				return 1;
+			}
+			aa = 上限加算関数(50, gs[◆Ｐｉｉ][iic].兵数最大, 9999);
+			aa = 上限加算関数(50, gs[◆Ｐｉｉ][iic].兵数, 9999);
+			ＳＭ(5048, aa, 0);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 1603;
+	if (国[iim].支配国 == ◆Ｐｉｉ && キャラ確認(1315, 0, 0, 0) && ◆ターン % 5 == 1)
+	{
+		if (織田選択(ff, tt, "Bernard's latent power", 0, 0) == 1)
+		{
+			iic = ＧＳ番号取得(1315, 999);
+			汎用１(1315, 999);
+			ra = RAND(4);
+			if (ra == 1 && gs[◆Ｐｉｉ][iic].攻撃基礎値 < 9)
+			{
+				gs[◆Ｐｉｉ][iic].攻撃基礎値++;
+				フラグ調整();
+				汎用１(iic, 999);
+				ＳＭ(5027, 0, 0);
+				return 1;
+			}
+			if (ra == 2 && gs[◆Ｐｉｉ][iic].防御基礎値 < 9)
+			{
+				gs[◆Ｐｉｉ][iic].防御基礎値++;
+				フラグ調整();
+				汎用１(iic, 999);
+				ＳＭ(5028, 0, 0);
+				return 1;
+			}
+			if (ra == 3 && gs[◆Ｐｉｉ][iic].知力基礎値 < 9)
+			{
+				gs[◆Ｐｉｉ][iic].知力基礎値++;
+				フラグ調整();
+				汎用１(iic, 999);
+				ＳＭ(5029, 0, 0);
+				return 1;
+			}
+			if (ra == 4 && gs[◆Ｐｉｉ][iic].早さ基礎値 < 9)
+			{
+				gs[◆Ｐｉｉ][iic].早さ基礎値++;
+				フラグ調整();
+				汎用１(iic, 999);
+				ＳＭ(5030, 0, 0);
+				return 1;
+			}
+			aa = 上限加算関数(50, gs[◆Ｐｉｉ][iic].兵数最大, 9999);
+			aa = 上限加算関数(50, gs[◆Ｐｉｉ][iic].兵数, 9999);
+			ＳＭ(5048, aa, 0);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 606;
+	cc = 576;
+	ss = 3;
+	Ｃ難易度[cc] = 99;
+	if (国[iim].支配国 == ◆Ｐｉｉ && ◆Ｐｉｉ == 16 && ＧＦ[212] == 0 && 支配国数(◆Ｐｉｉ) > 9)
+	{
+		if (織田選択(ff, tt, "Mass Produce Tulip #2", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Tulip #2", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			汎用１(1005, 999);
+			▲文字列 = "Maria can now mass produce Tulip #2!";
+			▲文字列２ = "The tulip unit is @the strongest!";
+			ＳＭ(5054, 0, 0);
+			ＧＦ[212] = 1;
+			return 1;
+		}
+	}
+	tt = 1604;
+	if (アイテム確認(49, 0, 999) == 0 && (ＧＦ[200] > 0 || ◆Ｐｉｉ == 14 || ＧＦ[219] != 1))
+	{
+		if (織田選択(ff, tt, "Pick up [Charm of the Immortal Fox Deity]", 0, 0) == 1)
+		{
+			アイテム取得(49);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 2005;
+	if (平均兵数％(◆Ｐｉｉ) != 100 && 国[iim].支配国 == ◆Ｐｉｉ)
+	{
+		if (織田選択(ff, tt, "Rest all troops (Heals " + string(◆全部隊休憩) + " troops in each unit)", 0, 0) == 1)
+		{
+			for (iic = 1; iic < 31; iic++)
+			{
+				if (gs[ii][iic].番号 != 0)
+				{
+					Ｃ兵数補充(◆全部隊休憩, iic, ii);
+				}
+			}
+			ＳＭ(5066, ◆全部隊休憩, 0);
+			return 1;
+		}
+	}
+	tt = 1605;
+	if (ＧＦ[185] == 0 && iim == 32 && 武将追加確認(2) == 1 && (国[iim].支配国 == ◆Ｐｉｉ || ▲隣接 == 2))
+	{
+		if (織田選択(ff, tt, "★Fabulous KD Quiz Show!", 0, 0) == 1)
+		{
+			KDQuiz();
+			ＧＦ[185] = 1;
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 9002;
+	if (国[iim].支配国 == ◆Ｐｉｉ && false)
+	{
+		if (織田選択(ff, tt, "Math.rand() test", 0, 0) == 1)
+		{
+			tagSystemMessage sSysMsg;
+			int cur = Math.Rand();
+			int nmax = cur;
+			int nmin = cur;
+			int index = 0;
+			sSysMsg.create(987, 0, "Current: " + string(cur) + "@Max: " + string(nmax) + "@Min: " + string(nmin), "I hope anon is happy!!@This is cool though.", "Random number cycler");
+			for (index = 0; index < 10000; ++index)
+			{
+				cur = Math.Rand();
+				if (cur > nmax)
+				{
+					nmax = cur;
+				}
+				if (cur < nmin)
+				{
+					nmin = cur;
+				}
+				sSysMsg.delete();
+				sSysMsg.create(987, 0, "Current: " + string(cur) + "@Max: " + string(nmax) + "@Min: " + string(nmin), "I hope anon is happy!!@This is cool though.", "Random number cycler");
+				UPDATE();
+			}
+			sSysMsg.delete();
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 9003;
+	cc = 600 + ◆Ｐｉｉ;
+	ss = 1;
+	Ｃ難易度[cc] = 30;
+	if (国[iim].支配国 == ◆Ｐｉｉ && キャラ数(◆Ｐｉｉ) < 30 && 総必要国力(999) < 総国力(999) && ◆ターン > 4)
+	{
+		text = "???";
+		if (キャラ数(21) != 0)
+		{
+			text = string(キャラ数(21));
+		}
+		if (織田選択(ff, tt, "Recruit Ronin (" + text + ")", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Recruit a ronin", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			aa = 0;
+			if (キャラ数(21) != 0)
+			{
+				iic2 = 乱キャラ取得(21, 0, 0);
+				iic = 勢力空き番号(ii);
+				if (iic2 != 0 && iic != 0)
+				{
+					aa = 1;
+					gs[ii][iic] = gs[21][iic2];
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = gs[ii][iic].兵数最大;
+					gs[ii][iic].重要 = 0;
+					gs[21][iic2].番号 = 0;
+					gs[ii][iic].兵数 = 1;				
+				}
+			}
+			if (aa == 0)
+			{
+				ra = RAND(36);
+				if (ra == 1)
+				{
+					iic = 乱武将登録(ii, 1, 0, "Kaminagahime", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5591;
+					gs[ii][iic].ＵＮ１ = 18065;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 2)
+				{
+					iic = 乱武将登録(ii, 2, 0, "Cow Tamer", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5581;
+					gs[ii][iic].ＵＮ１ = 18057;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 3)
+				{
+					iic = 乱武将登録(ii, 3, 0, "Tokko", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5583;
+					gs[ii][iic].ＵＮ１ = 18058;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 4)
+				{
+					iic = 乱武将登録(ii, 4, 0, "Splish-Splash", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5590;
+					gs[ii][iic].ＵＮ１ = 18054;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 5)
+				{
+					iic = 乱武将登録(ii, 5, 0, "Kamikaze", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5588;
+					gs[ii][iic].ＵＮ１ = 18062;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 6)
+				{
+					iic = 乱武将登録(ii, 6, 0, "Captain Vanilla", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5585;
+					gs[ii][iic].ＵＮ１ = 18059;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 7)
+				{
+					iic = 乱武将登録(ii, 7, 0, "Gecko", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5592;
+					gs[ii][iic].ＵＮ１ = 18053;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 8)
+				{
+					iic = 乱武将登録(ii, 8, 0, "Frozen", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5589;
+					gs[ii][iic].ＵＮ１ = 18061;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 9)
+				{
+					iic = 乱武将登録(ii, 9, 0, "Maid Lady", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5580;
+					gs[ii][iic].ＵＮ１ = 18055;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 10)
+				{
+					iic = 乱武将登録(ii, 10, 0, "False Angel", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5586;
+					gs[ii][iic].ＵＮ１ = 18064;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 11)
+				{
+					iic = 乱武将登録(ii, 11, 0, "Majician", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5587;
+					gs[ii][iic].ＵＮ１ = 18063;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 12)
+				{
+					iic = 乱武将登録(ii, 12, 0, "Demekin Tamer", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5584;
+					gs[ii][iic].ＵＮ１ = 18060;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 13)
+				{
+					iic = 乱武将登録(ii, 13, 0, "Goldfish Tamer", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5582;
+					gs[ii][iic].ＵＮ１ = 18056;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra > 13)
+				{
+					iic = 乱武将登録(ii, 20, 0, "Can Can", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5576;
+					gs[ii][iic].ＵＮ１ = 18052;
+					gs[ii][iic].兵数 = 1;
+				}
+			}
+			gs[ii][iic].行動 = 1;
+			ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Yoroppiku ne", "");
+			return 1;
+		}
+	}
+	tt = 9004;
+	if (国[iim].支配国 == ◆Ｐｉｉ && キャラ数(◆Ｐｉｉ) < 30 && ◆Ｐｉｉ == 17 && ◆金 > 5000 && 総必要国力(999) < 総国力(999) && ◆ターン > 4)
+	{
+		if (織田選択(ff, tt, "Buy Ronin for 5000 Ｇ (" + text + ")", 0, 0) == 1)
+		{
+			お金－(5000);
+			if (キャラ数(21) != 0)
+			{
+				iic2 = 乱キャラ取得(21, 0, 0);
+				iic = 勢力空き番号(ii);
+				if (iic2 != 0 && iic != 0)
+				{
+					aa = 1;
+					gs[ii][iic] = gs[21][iic2];
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = gs[ii][iic].兵数最大;
+					gs[ii][iic].重要 = 0;
+					gs[21][iic2].番号 = 0;
+					gs[ii][iic].兵数 = 1;
+				}
+			}
+			if (aa == 0)
+			{
+				ra = RAND(36);
+				if (ra == 1)
+				{
+					iic = 乱武将登録(ii, 1, 0, "Kaminagahime", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5591;
+					gs[ii][iic].ＵＮ１ = 18065;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 2)
+				{
+					iic = 乱武将登録(ii, 2, 0, "Cow Tamer", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5581;
+					gs[ii][iic].ＵＮ１ = 18057;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 3)
+				{
+					iic = 乱武将登録(ii, 3, 0, "Tokko", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5583;
+					gs[ii][iic].ＵＮ１ = 18058;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 4)
+				{
+					iic = 乱武将登録(ii, 4, 0, "Splish-Splash", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5590;
+					gs[ii][iic].ＵＮ１ = 18054;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 5)
+				{
+					iic = 乱武将登録(ii, 5, 0, "Kamikaze", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5588;
+					gs[ii][iic].ＵＮ１ = 18062;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 6)
+				{
+					iic = 乱武将登録(ii, 6, 0, "Captain Vanilla", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5585;
+					gs[ii][iic].ＵＮ１ = 18059;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 7)
+				{
+					iic = 乱武将登録(ii, 7, 0, "Gecko", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5592;
+					gs[ii][iic].ＵＮ１ = 18053;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 8)
+				{
+					iic = 乱武将登録(ii, 8, 0, "Frozen", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5589;
+					gs[ii][iic].ＵＮ１ = 18061;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 9)
+				{
+					iic = 乱武将登録(ii, 9, 0, "Maid Lady", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5580;
+					gs[ii][iic].ＵＮ１ = 18055;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 10)
+				{
+					iic = 乱武将登録(ii, 10, 0, "False Angel", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5586;
+					gs[ii][iic].ＵＮ１ = 18064;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 11)
+				{
+					iic = 乱武将登録(ii, 11, 0, "Majician", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5587;
+					gs[ii][iic].ＵＮ１ = 18063;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 12)
+				{
+					iic = 乱武将登録(ii, 12, 0, "Demekin Tamer", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5584;
+					gs[ii][iic].ＵＮ１ = 18060;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra == 13)
+				{
+					iic = 乱武将登録(ii, 13, 0, "Goldfish Tamer", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5582;
+					gs[ii][iic].ＵＮ１ = 18056;
+					gs[ii][iic].兵数 = 1;
+				}
+				if (ra > 13)
+				{
+					iic = 乱武将登録(ii, 20, 0, "Can Can", 1);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].ＣＧ = 5576;
+					gs[ii][iic].ＵＮ１ = 18052;
+					gs[ii][iic].兵数 = 1;
+				}
+			}
+			gs[ii][iic].行動 = 1;
+			ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "L, o, d, s @Of @E, m, o, n, e", "");
+			return 1;
+		}
+	}
+	tt = 1606;
+	if (国[iim].支配国 == ◆Ｐｉｉ && キャラ数(◆Ｐｉｉ) < 30 && ◆金 > 1000 && 総必要国力(999) < 総国力(999))
+	{
+		if (織田選択(ff, tt, "Buy Generic for 1000 Ｇ", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			お金－(1000);
+			iic = 勢力空き番号(ii);
+			if (iic != 0)
+			{
+				iic = 乱武将登録(ii, 0, 0, "", 0);
+				gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+				gs[ii][iic].兵数 = 1;
+			}
+			ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Whop it out!", "");
+			return 1;
+		}
+	}
+	tt = 9007;
+	if (キャラ確認(1113, 0, 0, 0) && 国[iim].支配国 == ◆Ｐｉｉ && キャラ数(◆Ｐｉｉ) < 30 && ◆金 > 50000 && 総必要国力(999) < 総国力(999))
+	{
+		if (織田選択(ff, tt, "Mass Produce Athena for 50000 Ｇ", 0, 0) == 1)
+		{
+			iic = ＧＳ番号取得(1113, ii);
+			ＧＦ[500] = gs[ii][iic].建設基礎値;
+			ＧＦ[501] = gs[ii][iic].探索基礎値;
+			ＧＦ[502] = gs[ii][iic].交渉基礎値;
+			ＧＦ[503] = gs[ii][iic].攻撃基礎値;
+			ＧＦ[504] = gs[ii][iic].防御基礎値;
+			ＧＦ[505] = gs[ii][iic].知力基礎値;
+			ＧＦ[506] = gs[ii][iic].早さ基礎値;
+			ＧＦ[507] = gs[ii][iic].技数基礎値;
+			ＧＦ[508] = gs[ii][iic].技４;
+			ＧＦ[509] = gs[ii][iic].技１;
+			ＧＦ[510] = gs[ii][iic].技３;
+			ＧＦ[511] = gs[ii][iic].技能;
+			お金－(50000);
+			iic = 乱武将登録(ii, 5, 0, "Mass-Produced Athena", 1);
+			gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+			gs[ii][iic].ＣＧ = 8093;
+			gs[ii][iic].ＵＮ１ = 13113;
+			gs[ii][iic].建設 = ＧＦ[500];
+			gs[ii][iic].探索 = ＧＦ[501];
+			gs[ii][iic].交渉 = ＧＦ[502];
+			gs[ii][iic].攻撃 = ＧＦ[503];
+			gs[ii][iic].防御 = ＧＦ[504];
+			gs[ii][iic].知力 = ＧＦ[505];
+			gs[ii][iic].早さ = ＧＦ[506];
+			gs[ii][iic].技数 = ＧＦ[507];
+			gs[ii][iic].建設基礎値 = ＧＦ[500];
+			gs[ii][iic].探索基礎値 = ＧＦ[501];
+			gs[ii][iic].交渉基礎値 = ＧＦ[502];
+			gs[ii][iic].攻撃基礎値 = ＧＦ[503];
+			gs[ii][iic].防御基礎値 = ＧＦ[504];
+			gs[ii][iic].知力基礎値 = ＧＦ[505];
+			gs[ii][iic].早さ基礎値 = ＧＦ[506];
+			gs[ii][iic].技数基礎値 = ＧＦ[507];
+			gs[ii][iic].技４ = ＧＦ[508];
+			gs[ii][iic].技１ = ＧＦ[509];
+			gs[ii][iic].技３ = ＧＦ[510];
+			gs[ii][iic].技能 = ＧＦ[511];
+			ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Beep boop.", "");
+			return 1;
+		}
+	}
+	tt = 8001;
+	if (キャラ確認(1313, 1341, 0, 0))
+	{
+		if (織田選択(ff, tt, "*Arios: Ascend", 0, 0) == 1)
+		{
+			武将強制登録(21, 1484, 5);
+			キャラ重要変更(0, 1022, 999);
+			キャラ重要変更(0, 1080, 999);
+			キャラ重要変更(0, 1081, 999);
+			if (ＧＦ[218] == 0)
+			{
+				キャラ重要変更(1, 1313, 999);
+			}
+			iic = ＧＳ番号取得(1313, ii);
+			汎用１(1313, 999);
+			勢力[13].看板 = 1;
+			ＧＦ[253] = 1;
+			gs[ii][iic].個人 = 0;
+			gs[ii][iic].ＣＧ = 342;
+			gs[ii][iic].ＵＮ１ = 13280;
+			Ｃ技能変更(128, 5, 1313, 999, 0);
+			Ｃ技能変更(271, 4, 1313, 999, 0);
+			Ｃ技能変更(270, 3, 1313, 999, 0);
+			gs[◆Ｐｉｉ][iic].攻撃基礎値 += 4;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].防御基礎値 += 4;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].知力基礎値 += 4;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].早さ基礎値 += 4;
+			フラグ調整();
+			汎用１(iic, 999);
+			ＳＭ(5027, 0, 0);
+			ＳＭ(5028, 0, 0);
+			ＳＭ(5029, 0, 0);
+			ＳＭ(5030, 0, 0);
+			キャラ消去(1341, 999);
+			return 1;
+		}
+	}
+	tt = 8003;
+	if (キャラ確認(1045, 1060, 0, 0))
+	{
+		if (織田選択(ff, tt, "*Super Fusion Unleashed", 0, 0) == 1)
+		{
+			キャラ消去(1045, 999);
+			キャラ消去(1060, 999);
+			武将強制登録(ii, 1361, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1361, 999);
+			return 1;
+		}
+	}
+	tt = 7003;
+	if ((キャラ確認(1009, 1005, 1345, 0) || キャラ確認(1009, 1005, 1030, 0) || キャラ確認(1009, 1005, 1594, 0) || キャラ確認(1009, 1345, 1030, 0) || キャラ確認(1009, 1345, 1594, 0) || キャラ確認(1009, 1030, 1594, 0) || キャラ確認(1005, 1345, 1030, 0) || キャラ確認(1005, 1345, 1594, 0) || キャラ確認(1005, 1030, 1594, 0) || キャラ確認(1345, 1030, 1594, 0)) && ＧＦ[180] == 0 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*Glasses Girl Gathering", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1365, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1365, 999);
+			ＧＦ[180] = 1;
+			return 1;
+		}
+	}
+	tt = 7004;
+	if (キャラ確認(1380, 1319, 0, 0) && ＧＦ[181] == 0)
+	{
+		if (織田選択(ff, tt, "*Bird's Ultimate Revenge", 0, 0) == 1)
+		{
+			iic = ＧＳ番号取得(1380, ii);
+			gs[ii][iic].ＣＧ = 394;
+			Ｃ技能変更(123, 5, 1380, 999, 0);
+			ＧＦ[181] = 1;
+			return 1;
+		}
+	}
+	tt = 2900;
+	if (iim == ＧＦ[520] && 国[iim].支配国 == ◆Ｐｉｉ && ＧＦ[184] == 0 && ＧＦ[521] == 0 && 武将追加確認(2) == 1 && ◆コマンド実行数 == 1)
+	{
+		if (織田選択(ff, tt, "*A Roaming Alien", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1595, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1595, 999);
+			ＧＦ[521] = 1;
+			return 1;
+		}
+	}
+	tt = 1607;
+	if (キャラ確認(1381, 1046, 0, 0) && ＧＦ[193] == 0)
+	{
+		if (織田選択(ff, tt, "*Apostles memories restored", 0, 0) == 1)
+		{
+			iic = ＧＳ番号取得(1381, ii);
+			汎用１(1381, 999);
+			gs[ii][iic].ＵＮ１ = 13183;
+			gs[ii][iic].ＣＧ = 415;
+			gs[ii][iic].個人 = 0;
+			Ｃ技能変更(182, 3, 1381, 999, 0);
+			Ｃ技能変更(80, 4, 1381, 999, 0);
+			gs[◆Ｐｉｉ][iic].攻撃基礎値 += 3;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].防御基礎値 += 2;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].知力基礎値 += 2;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].早さ基礎値 += 3;
+			フラグ調整();
+			汎用１(iic, 999);
+			ＳＭ(5027, 0, 0);
+			ＳＭ(5028, 0, 0);
+			ＳＭ(5029, 0, 0);
+			ＳＭ(5030, 0, 0);
+			ＧＦ[193] = 1;
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 8006;
+	if (キャラ確認(1381, 1117, 0, 0) && ＧＦ[193] == 1)
+	{
+		if (織田選択(ff, tt, "*Seig's Blood Soul", 0, 0) == 1)
+		{
+			キャラ消去(1381, 999);
+			キャラ消去(1117, 999);
+			武将強制登録(ii, 1386, 5);
+			キャラ重要変更(0, 1386, 999);
+			iic = ＧＳ番号取得(1386, ii);
+			ＳＭ(5027, 0, 0);
+			ＳＭ(5028, 0, 0);
+			ＳＭ(5029, 0, 0);
+			ＳＭ(5030, 0, 0);
+			ＧＦ[193] = 2;
+			return 1;
+		}
+	}
+	tt = 8007;
+	if (iim == 26 && キャラ確認(1025, 0, 0, 0) && 国[iim].支配国 == ◆Ｐｉｉ && ＧＦ[184] == 0)
+	{
+		if (織田選択(ff, tt, "*Mill's trip down to adulthood.", 0, 0) == 1)
+		{
+			iic = ＧＳ番号取得(1025, 999);
+			gs[ii][iic].ＵＮ１ = 13283;
+			gs[ii][iic].ＣＧ = 370;
+			aa = 上限加算関数(230, gs[◆Ｐｉｉ][iic].兵数最大, 9999);
+			aa = 上限加算関数(230, gs[◆Ｐｉｉ][iic].兵数, 9999);
+			汎用１(1025, 999);
+			ＳＭ(5048, aa, 0);
+			gs[◆Ｐｉｉ][iic].早さ基礎値++;
+			フラグ調整();
+			汎用１(iic, 999);
+			ＳＭ(5030, 0, 0);
+			gs[◆Ｐｉｉ][iic].知力基礎値++;
+			フラグ調整();
+			汎用１(iic, 999);
+			ＳＭ(5029, 0, 0);
+			gs[◆Ｐｉｉ][iic].防御基礎値++;
+			フラグ調整();
+			汎用１(iic, 999);
+			ＳＭ(5028, 0, 0);
+			gs[ii][iic].技数基礎値++;
+			フラグ調整();
+			汎用１(iic, 999);
+			ＳＭ(5055, gs[ii][iic].技数, 0);
+			ＧＦ[184] = 1;
+			return 1;
+		}
+	}
+	tt = 8009;
+	if ((キャラ確認(1323, 1002, 1325, 0) || キャラ確認(1323, 1002, 1067, 0) || キャラ確認(1323, 1002, 1479, 0) || キャラ確認(1323, 1325, 1067, 0) || キャラ確認(1323, 1325, 1479, 0) || キャラ確認(1323, 1067, 1479, 0) || キャラ確認(1002, 1325, 1067, 0) || キャラ確認(1002, 1325, 1479, 0) || キャラ確認(1002, 1067, 1479, 0) || キャラ確認(1325, 1067, 1479, 0)) && ＧＦ[186] == 0 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*The tastes of an eccentric old man.", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1395, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1395, 999);
+			ＧＦ[186] = 1;
+			return 1;
+		}
+	}
+	tt = 8010;
+	if ((キャラ確認(1082, 1076, 1353, 0) || キャラ確認(1082, 1076, 1113, 0) || キャラ確認(1082, 1076, 1071, 0) || キャラ確認(1082, 1353, 1113, 0) || キャラ確認(1082, 1353, 1071, 0) || キャラ確認(1082, 1113, 1071, 0) || キャラ確認(1076, 1353, 1113, 0) || キャラ確認(1076, 1353, 1071, 0) || キャラ確認(1076, 1113, 1071, 0) || キャラ確認(1353, 1113, 1071, 0)) && ＧＦ[187] == 0 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*Help the man in the concrete!", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1394, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1394, 999);
+			ＧＦ[187] = 1;
+			return 1;
+		}
+	}
+	tt = 8011;
+	if ((キャラ確認(1451, 1003, 1314, 0) || キャラ確認(1451, 1003, 1077, 0) || キャラ確認(1451, 1003, 1086, 0) || キャラ確認(1451, 1314, 1077, 0) || キャラ確認(1451, 1314, 1086, 0) || キャラ確認(1451, 1077, 1086, 0) || キャラ確認(1003, 1314, 1077, 0) || キャラ確認(1003, 1314, 1086, 0) || キャラ確認(1003, 1077, 1086, 0) || キャラ確認(1314, 1077, 1086, 0)) && ＧＦ[188] == 0 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*Pull the Legendary Katana from the stone?!", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1597, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1597, 999);
+			ＧＦ[188] = 1;
+			return 1;
+		}
+	}
+	tt = 8012;
+	if ((キャラ確認(1000, 1404, 1035, 0) || キャラ確認(1000, 1404, 1524, 0) || キャラ確認(1000, 1404, 1327, 0) || キャラ確認(1000, 1035, 1524, 0) || キャラ確認(1000, 1035, 1327, 0) || キャラ確認(1000, 1524, 1327, 0) || キャラ確認(1404, 1035, 1524, 0) || キャラ確認(1404, 1035, 1327, 0) || キャラ確認(1404, 1524, 1327, 0) || キャラ確認(1035, 1524, 1327, 0)) && ＧＦ[189] == 0)
+	{
+		if (織田選択(ff, tt, "*Chaos looming.", 0, 0) == 1)
+		{
+			ＳＭ(5019, 31, 0);
+			ＧＦ[189] = 1;
+			return 1;
+		}
+	}
+	tt = 8013;
+	if (キャラ確認(1093, 1395, 1394, 0) && ＧＦ[190] == 0 && ＧＦ[189] == 1 && ＧＦ[188] == 1 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*Legendary Five's Ultimate Quest", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1402, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1402, 999);
+			ＧＦ[190] = 1;
+			return 1;
+		}
+	}
+	tt = 8014;
+	if (キャラ確認(1001, 1004, 1157, 1387) && キャラ確認(1077, 1072, 1397, 1109) && キャラ確認(1009, 1026, 1344, 1121) && キャラ確認(1094, 0, 0, 0) && ＧＦ[191] == 0)
+	{
+		if (織田選択(ff, tt, "*Rance's Fated Girls", 0, 0) == 1)
+		{
+			ＳＭ(5019, 51, 0);
+			ＳＭ(5019, 52, 0);
+			ＳＭ(5019, 26, 0);
+			ＳＭ(5019, 27, 0);
+			ＳＭ(5019, 28, 0);
+			ＳＭ(5019, 29, 0);
+			ＳＭ(5019, 30, 0);
+			ＳＭ(5019, 21, 0);
+			ＳＭ(5019, 22, 0);
+			ＳＭ(5019, 23, 0);
+			ＳＭ(5019, 24, 0);
+			ＳＭ(5019, 25, 0);
+			ＧＦ[191] = 1;
+			return 1;
+		}
+	}
+	tt = 8015;
+	if ((キャラ確認(1000, 1323, 1325, 1027) || キャラ確認(1000, 1323, 1325, 1027)) && キャラ確認(1347, 1040, 1028, 1050) && キャラ確認(1031, 1313, 1366, 1368) && ＧＦ[192] == 0)
+	{
+		if (織田選択(ff, tt, "*Miracle's Twelve Knights", 0, 0) == 1)
+		{
+			ＳＭ(5019, 86, 0);
+			ＳＭ(5019, 87, 0);
+			ＳＭ(5019, 88, 0);
+			ＳＭ(5019, 89, 0);
+			ＳＭ(5019, 90, 0);
+			ＳＭ(5019, 26, 0);
+			ＳＭ(5019, 27, 0);
+			ＳＭ(5019, 28, 0);
+			ＳＭ(5019, 29, 0);
+			ＳＭ(5019, 30, 0);
+			ＳＭ(5019, 21, 0);
+			ＳＭ(5019, 22, 0);
+			ＳＭ(5019, 23, 0);
+			ＳＭ(5019, 24, 0);
+			ＳＭ(5019, 25, 0);
+			ＧＦ[192] = 1;
+			return 1;
+		}
+	}
+	tt = 8016;
+	if (アイテム確認(53, 0, 999) == 0 && キャラ確認(1398, 1399, 1400, 1401))
+	{
+		if (織田選択(ff, tt, "*The Four Holy Gal Monsters", 0, 0) == 1)
+		{
+			ＳＭ(5019, 53, 0);
+			ＳＭ(5019, 70, 0);
+			ＳＭ(5019, 68, 0);
+			ＳＭ(5019, 40, 0);
+			return 1;
+		}
+	}
+	tt = 8017;
+	if (アイテム確認(59, 0, 999) == 0 && キャラ確認(1058, 1357, 1358, 1359) && キャラ確認(1360, 0, 0, 0))
+	{
+		if (織田選択(ff, tt, "*The Horus Return to the Home Planet", 0, 0) == 1)
+		{
+			ＳＭ(5019, 59, 0);
+			ＳＭ(5019, 60, 0);
+			return 1;
+		}
+	}
+	tt = 8019;
+	if (キャラ確認(1040, 1065, 1157, 0) && アイテム確認(64, 0, 999) == 0)
+	{
+		if (織田選択(ff, tt, "*Masao Sister Reunion", 0, 0) == 1)
+		{
+			ＳＭ(5019, 64, 0);
+			ＳＭ(5019, 67, 0);
+			ＳＭ(5019, 69, 0);
+			ＧＦ[196] = 1;
+			return 1;
+		}
+	}
+	tt = 8026;
+	if (キャラ確認(1365, 1082, 0, 0) && ＧＦ[183] == 0)
+	{
+		if (織田選択(ff, tt, "*The Blessing of the Hanny King", 0, 0) == 1)
+		{
+			iic = ＧＳ番号取得(1082, ii);
+			Ｃ技能変更(8, 4, 1082, 999, 0);
+			Ｃ技能変更(106, 5, 1082, 999, 0);
+			gs[◆Ｐｉｉ][iic].攻撃基礎値 += 4;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].防御基礎値 += 4;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].知力基礎値 += 4;
+			フラグ調整();
+			汎用１(iic, 999);
+			gs[◆Ｐｉｉ][iic].早さ基礎値 += 4;
+			フラグ調整();
+			汎用１(iic, 999);
+			ＳＭ(5027, 0, 0);
+			ＳＭ(5028, 0, 0);
+			ＳＭ(5029, 0, 0);
+			ＳＭ(5030, 0, 0);
+			ＧＦ[183] = 1;
+			return 1;
+		}
+	}
+	tt = 8027;
+	if (キャラ確認(1441, 1431, 1432, 1433) && キャラ確認(1434, 0, 0, 0) && ＧＦ[199] == 0)
+	{
+		if (織田選択(ff, tt, "*Ashikaga's Unstable Evolution", 0, 0) == 1)
+		{
+			iic = ＧＳ番号取得(1441, ii);
+			Ｃ技能変更(104, 5, 1441, 999, 0);
+			ＧＦ[199] = 1;
+			汎用１(1441, 999);
+			▲文字列 = gs[0][1].名前 + " found his people.";
+			▲文字列２ = "I'm the emperor of my @beautiful people!";
+			ＳＭ(5054, 0, 0);
+			return 1;
+		}
+	}
+	tt = 8028;
+	if (◆Ｐｉｉ == 9 && キャラ確認(1059, 0, 0, 0) && キャラ確認(1003, 0, 0, 0) == 0)
+	{
+		if (織田選択(ff, tt, "*Archfiend Little Princess", 0, 0) == 1)
+		{
+			キャラ消去(1059, 999);
+			武将強制登録(ii, 1017, 5);
+			if (ＧＦ[218] == 0)
+			{
+				キャラ重要変更(1, 1017, 999);
+			}
+			iic = ＧＳ番号取得(1017, ii);
+			ＳＭ(5027, 0, 0);
+			ＳＭ(5028, 0, 0);
+			ＳＭ(5029, 0, 0);
+			ＳＭ(5030, 0, 0);
+			return 1;
+		}
+	}
+	tt = 1608;
+	if ((Ｃ確認Ｍ("Nuzlocke", 999) == 1 || Ｃ確認Ｍ("Ironman", 999) == 1 || Ｃ確認Ｍ("Hardcore", 999) == 1 || Ｃ確認Ｍ("Sendicard", 999) == 1 || Ｃ確認Ｍ("Muri", 999) == 1) && ＧＦ[218] == 0)
+	{
+		if (織田選択(ff, tt, "*ALL DEATH IS LEGAL", 0, 0) == 1)
+		{
+			ＧＦ[218] = 1;
+			キャラ重要変更(0, 1000, ii2);
+			キャラ重要変更(0, 1001, ii2);
+			キャラ重要変更(0, 1003, ii2);
+			キャラ重要変更(0, 1004, ii2);
+			キャラ重要変更(0, 1005, ii2);
+			キャラ重要変更(0, 1006, ii2);
+			キャラ重要変更(0, 1007, ii2);
+			キャラ重要変更(0, 1008, ii2);
+			キャラ重要変更(0, 1011, ii2);
+			キャラ重要変更(0, 1012, ii2);
+			キャラ重要変更(0, 1013, ii2);
+			キャラ重要変更(0, 1017, ii2);
+			キャラ重要変更(0, 1018, ii2);
+			キャラ重要変更(0, 1019, ii2);
+			キャラ重要変更(0, 1020, ii2);
+			キャラ重要変更(0, 1021, ii2);
+			キャラ重要変更(0, 1022, ii2);
+			キャラ重要変更(0, 1023, ii2);
+			キャラ重要変更(0, 1024, ii2);
+			キャラ重要変更(0, 1025, ii2);
+			キャラ重要変更(0, 1026, ii2);
+			キャラ重要変更(0, 1027, ii2);
+			キャラ重要変更(0, 1028, ii2);
+			キャラ重要変更(0, 1029, ii2);
+			キャラ重要変更(0, 1031, ii2);
+			キャラ重要変更(0, 1035, ii2);
+			キャラ重要変更(0, 1040, ii2);
+			キャラ重要変更(0, 1041, ii2);
+			キャラ重要変更(0, 1042, ii2);
+			キャラ重要変更(0, 1043, ii2);
+			キャラ重要変更(0, 1045, ii2);
+			キャラ重要変更(0, 1048, ii2);
+			キャラ重要変更(0, 1050, ii2);
+			キャラ重要変更(0, 1053, ii2);
+			キャラ重要変更(0, 1054, ii2);
+			キャラ重要変更(0, 1055, ii2);
+			キャラ重要変更(0, 1056, ii2);
+			キャラ重要変更(0, 1057, ii2);
+			キャラ重要変更(0, 1059, ii2);
+			キャラ重要変更(0, 1060, ii2);
+			キャラ重要変更(0, 1061, ii2);
+			キャラ重要変更(0, 1062, ii2);
+			キャラ重要変更(0, 1071, ii2);
+			キャラ重要変更(0, 1064, ii2);
+			キャラ重要変更(0, 1065, ii2);
+			キャラ重要変更(0, 1066, ii2);
+			キャラ重要変更(0, 1067, ii2);
+			キャラ重要変更(0, 1068, ii2);
+			キャラ重要変更(0, 1069, ii2);
+			キャラ重要変更(0, 1073, ii2);
+			キャラ重要変更(0, 1076, ii2);
+			キャラ重要変更(0, 1081, ii2);
+			キャラ重要変更(0, 1086, ii2);
+			キャラ重要変更(0, 1091, ii2);
+			キャラ重要変更(0, 1093, ii2);
+			キャラ重要変更(0, 1094, ii2);
+			キャラ重要変更(0, 1096, ii2);
+			キャラ重要変更(0, 1097, ii2);
+			キャラ重要変更(0, 1098, ii2);
+			キャラ重要変更(0, 1099, ii2);
+			キャラ重要変更(0, 1100, ii2);
+			キャラ重要変更(0, 1109, ii2);
+			キャラ重要変更(0, 1110, ii2);
+			キャラ重要変更(0, 1112, ii2);
+			キャラ重要変更(0, 1113, ii2);
+			キャラ重要変更(0, 1115, ii2);
+			キャラ重要変更(0, 1116, ii2);
+			キャラ重要変更(0, 1120, ii2);
+			キャラ重要変更(0, 1121, ii2);
+			キャラ重要変更(0, 1122, ii2);
+			キャラ重要変更(0, 1157, ii2);
+			キャラ重要変更(0, 1313, ii2);
+			キャラ重要変更(0, 1315, ii2);
+			キャラ重要変更(0, 1343, ii2);
+			キャラ重要変更(0, 1347, ii2);
+			キャラ重要変更(0, 1351, ii2);
+			キャラ重要変更(0, 1355, ii2);
+			キャラ重要変更(0, 1356, ii2);
+			キャラ重要変更(0, 1380, ii2);
+			キャラ重要変更(0, 1387, ii2);
+			キャラ重要変更(0, 1399, ii2);
+			キャラ重要変更(0, 1417, ii2);
+			キャラ重要変更(0, 1418, ii2);
+			キャラ重要変更(0, 1419, ii2);
+			キャラ重要変更(0, 1458, ii2);
+			キャラ重要変更(0, 1468, ii2);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 1609;
+	if ((Ｃ確認Ｍ("Regaccio", 999) == 1 || Ｃ確認Ｍ("Benkei", 999) == 1 || Ｃ確認Ｍ("Pluepet", 999) == 1) && アイテム確認(46, 0, 999) == 0)
+	{
+		if (織田選択(ff, tt, "*Enable All Items (Warning, Horrible)", 0, 0) == 1)
+		{
+			ＳＭ(5019, 31, 0);
+			ＳＭ(5019, 32, 0);
+			ＳＭ(5019, 33, 0);
+			ＳＭ(5019, 34, 0);
+			ＳＭ(5019, 35, 0);
+			ＳＭ(5019, 36, 0);
+			ＳＭ(5019, 37, 0);
+			ＳＭ(5019, 38, 0);
+			ＳＭ(5019, 39, 0);
+			ＳＭ(5019, 41, 0);
+			ＳＭ(5019, 42, 0);
+			ＳＭ(5019, 43, 0);
+			ＳＭ(5019, 44, 0);
+			ＳＭ(5019, 45, 0);
+			ＳＭ(5019, 46, 0);
+			ＳＭ(5019, 47, 0);
+			ＳＭ(5019, 48, 0);
+			ＳＭ(5019, 49, 0);
+			ＳＭ(5019, 40, 0);
+			ＳＭ(5019, 51, 0);
+			ＳＭ(5019, 52, 0);
+			ＳＭ(5019, 53, 0);
+			ＳＭ(5019, 54, 0);
+			ＳＭ(5019, 55, 0);
+			ＳＭ(5019, 56, 0);
+			ＳＭ(5019, 57, 0);
+			ＳＭ(5019, 58, 0);
+			ＳＭ(5019, 59, 0);
+			ＳＭ(5019, 50, 0);
+			ＳＭ(5019, 61, 0);
+			ＳＭ(5019, 62, 0);
+			ＳＭ(5019, 63, 0);
+			ＳＭ(5019, 64, 0);
+			ＳＭ(5019, 65, 0);
+			ＳＭ(5019, 66, 0);
+			ＳＭ(5019, 67, 0);
+			ＳＭ(5019, 68, 0);
+			ＳＭ(5019, 69, 0);
+			ＳＭ(5019, 60, 0);
+			ＳＭ(5019, 71, 0);
+			ＳＭ(5019, 72, 0);
+			ＳＭ(5019, 73, 0);
+			ＳＭ(5019, 74, 0);
+			ＳＭ(5019, 75, 0);
+			ＳＭ(5019, 76, 0);
+			ＳＭ(5019, 77, 0);
+			ＳＭ(5019, 78, 0);
+			ＳＭ(5019, 79, 0);
+			ＳＭ(5019, 70, 0);
+			ＳＭ(5019, 81, 0);
+			ＳＭ(5019, 82, 0);
+			ＳＭ(5019, 83, 0);
+			ＳＭ(5019, 84, 0);
+			ＳＭ(5019, 85, 0);
+			ＳＭ(5019, 80, 0);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 3692;
+	if (iim == 20 && ＧＦ[196] == 0 && 国[iim].支配国 == ◆Ｐｉｉ)
+	{
+		if (織田選択(ff, tt, "Open Bridge to Italia", 0, 0) == 1)
+		{
+			ＧＦ[196] = 1;
+			Ｄ国(20, 国[20].国力, "AL Church", 国[20].支配国, 22, 9, 0, 0, 0, 0, 0, 0);
+			Ｄ国(9, 国[9].国力, "Italia", 国[9].支配国, 6, 7, 8, 10, 20, 0, 0, 0);
+			勢力隣接状況再計算(20);
+			勢力隣接状況再計算(9);
+			return 1;
+		}
+	}
+	tt = 3693;
+	cc = 576;
+	ss = 3;
+	Ｃ難易度[cc] = 30;
+	if (iim == 9 && ＧＦ[196] == 0 && 国[iim].支配国 == ◆Ｐｉｉ) 
+	{
+		if (織田選択(ff, tt, "Build Bridge to AL Church", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Bridge", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			ＧＦ[196] = 1;
+			Ｄ国(20, 国[20].国力, "AL Church", 国[20].支配国, 22, 9, 0, 0, 0, 0, 0, 0);
+			Ｄ国(9, 国[9].国力, "Italia", 国[9].支配国, 6, 7, 8, 10, 20, 0, 0, 0);
+			勢力隣接状況再計算(20);
+			勢力隣接状況再計算(9);
+			return 1;
+		}
+	}
+	tt = 9838;
+	if (iim == 18 && ＧＦ[197] == 0 && 国[iim].支配国 == ◆Ｐｉｉ) 
+	{
+		if (織田選択(ff, tt, "Build Bridge to Oaks", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Bridge", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			ＧＦ[197] = 1;
+			Ｄ国(27, 国[27].国力, "Oaks", 国[27].支配国, 26, 28, 30, 31, 18, 0, 0, 0);
+			Ｄ国(18, 国[18].国力, "Kyoto", 国[18].支配国, 19, 27, 0, 0, 0, 0, 0, 0);
+			勢力隣接状況再計算(18);
+			勢力隣接状況再計算(27);
+			return 1;
+		}
+	}
+	tt = 9839;
+	if (iim == 27 && ＧＦ[197] == 0 && 国[iim].支配国 == ◆Ｐｉｉ) 
+	{
+		if (織田選択(ff, tt, "Build Bridge to Kyoto", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Bridge", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			ＧＦ[197] = 1;
+			Ｄ国(27, 国[27].国力, "Oaks", 国[27].支配国, 26, 28, 30, 31, 18, 0, 0, 0);
+			Ｄ国(18, 国[18].国力, "Kyoto", 国[18].支配国, 19, 27, 0, 0, 0, 0, 0, 0);
+			勢力隣接状況再計算(18);
+			勢力隣接状況再計算(27);
+			return 1;
+		}
+	}
+	tt = 9840;
+	if ((キャラ確認(1061, 1042, 1049, 0) || キャラ確認(1061, 1042, 1346, 0) || キャラ確認(1061, 1042, 1417, 0) || キャラ確認(1061, 1049, 1346, 0) || キャラ確認(1061, 1049, 1417, 0) || キャラ確認(1061, 1346, 1417, 0) || キャラ確認(1042, 1049, 1346, 0) || キャラ確認(1042, 1049, 1417, 0) || キャラ確認(1042, 1346, 1417, 0) || キャラ確認(1049, 1346, 1417, 0)) && ＧＦ[198] == 0 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*A Legendary Spellblader?!?!", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1603, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1603, 999);
+			ＧＦ[198] = 1;
+			return 1;
+		}
+	}
+	tt = 9841;
+	if ((キャラ確認(1071, 1397, 1041, 0) || キャラ確認(1071, 1397, 1118, 0) || キャラ確認(1071, 1397, 1005, 0) || キャラ確認(1071, 1041, 1118, 0) || キャラ確認(1071, 1041, 1005, 0) || キャラ確認(1071, 1118, 1005, 0) || キャラ確認(1397, 1041, 1118, 0) || キャラ確認(1397, 1041, 1005, 0) || キャラ確認(1397, 1118, 1005, 0) || キャラ確認(1041, 1118, 1005, 0)) && ＧＦ[199] == 0 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*A gathering of 'geniuses'.", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1604, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1604, 999);
+			ＧＦ[199] = 1;
+			return 1;
+		}
+	}
+	tt = 9842;
+	if ((キャラ確認(1027, 1052, 1022, 0) || キャラ確認(1027, 1052, 1325, 0) || キャラ確認(1027, 1052, 1549, 0) || キャラ確認(1027, 1022, 1325, 0) || キャラ確認(1027, 1022, 1549, 0) || キャラ確認(1027, 1325, 1549, 0) || キャラ確認(1052, 1022, 1325, 0) || キャラ確認(1052, 1022, 1549, 0) || キャラ確認(1052, 1325, 1549, 0) || キャラ確認(1022, 1325, 1549, 0)) && ＧＦ[200] == 0 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*An old baseball star...", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1605, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1605, 999);
+			ＧＦ[200] = 1;
+			return 1;
+		}
+	}
+	tt = 9843;
+	if ((キャラ確認(1046, 1109, 1403, 0) || キャラ確認(1046, 1109, 1041, 0) || キャラ確認(1046, 1109, 1376, 0) || キャラ確認(1046, 1403, 1041, 0) || キャラ確認(1046, 1403, 1376, 0) || キャラ確認(1046, 1041, 1376, 0) || キャラ確認(1109, 1403, 1041, 0) || キャラ確認(1109, 1403, 1376, 0) || キャラ確認(1109, 1041, 1376, 0) || キャラ確認(1403, 1041, 1376, 0)) && ＧＦ[201] == 0 && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "*The pretender ruler of dragons.", 0, 0) == 1)
+		{
+			武将強制登録(ii, 1606, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1606, 999);
+			ＧＦ[201] = 1;
+			return 1;
+		}
+	}
+	tt = 1610;
+	cc = 600 + ◆Ｐｉｉ;
+	ss = 2;
+	Ｃ難易度[cc] = 10;
+	if (Ｃ技能総数取得(369, 999) && キャラ数(◆Ｐｉｉ) < 30)
+	{
+		if (織田選択(ff, tt, "Search for a specific generic.", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Convince the generic...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			選択肢(0, "What class should Ithere 'convince' to join your army?", -1);
+			選択肢(1, "Warrior", -1);
+			選択肢(2, "Guard", -1);
+			選択肢(3, "Mage", -1);
+			選択肢(4, "Tactician", -1);
+			選択肢(5, "Ninja", -1);
+			選択肢(6, "Brawler", -1);
+			選択肢(7, "Archer", -1);
+			
+			rr = 選択(false, 0, 0);
+			if (rr == 1)
+			{
+				iic = 勢力空き番号(ii);
+				if (iic != 0)
+				{
+					iic = 乱武将登録(ii, 1, 0, "", 0);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = 1;
+				}
+				gs[ii][iic].行動 = 1;
+				ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Whop it out!", "");
+				◆コマンド実行数++;
+				return 1;
+			}
+			if (rr == 2)
+			{
+				iic = 勢力空き番号(ii);
+				if (iic != 0)
+				{
+					iic = 乱武将登録(ii, 3, 0, "", 0);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = 1;
+				}
+				gs[ii][iic].行動 = 1;
+				ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Whop it out!", "");
+				◆コマンド実行数++;
+				return 1;
+			}
+			if (rr == 3)
+			{
+				iic = 勢力空き番号(ii);
+				if (iic != 0)
+				{
+					iic = 乱武将登録(ii, 11, 0, "", 0);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = 1;
+				}
+				gs[ii][iic].行動 = 1;
+				ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Whop it out!", "");
+				◆コマンド実行数++;
+				return 1;
+			}
+			if (rr == 4)
+			{
+				iic = 勢力空き番号(ii);
+				if (iic != 0)
+				{
+					iic = 乱武将登録(ii, 13, 0, "", 0);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = 1;
+				}
+				gs[ii][iic].行動 = 1;
+				ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Whop it out!", "");
+				◆コマンド実行数++;
+				return 1;
+			}
+			if (rr == 5)
+			{
+				iic = 勢力空き番号(ii);
+				if (iic != 0)
+				{
+					iic = 乱武将登録(ii, 6, 0, "", 0);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = 1;
+				}
+				gs[ii][iic].行動 = 1;
+				ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Whop it out!", "");
+				◆コマンド実行数++;
+				return 1;
+			}
+			if (rr == 6)
+			{
+				iic = 勢力空き番号(ii);
+				if (iic != 0)
+				{
+					iic = 乱武将登録(ii, 7, 0, "", 0);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = 1;
+				}
+				gs[ii][iic].行動 = 1;
+				ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Whop it out!", "");
+				◆コマンド実行数++;
+				return 1;
+			}
+			if (rr == 7)
+			{
+				iic = 勢力空き番号(ii);
+				if (iic != 0)
+				{
+					iic = 乱武将登録(ii, 5, 0, "", 0);
+					gs[ii][iic].兵数最大 = ベース兵力取得(999, 100);
+					gs[ii][iic].兵数 = 1;
+				}
+				gs[ii][iic].行動 = 1;
+				ＰＳＭ(gs[ii][iic].ＣＧ, gs[ii][iic].名前 + " joins the army", "Whop it out!", "");
+				◆コマンド実行数++;
+				return 1;
+			}
+		}
+	}
+	// Kayblis Recruitment Events
+	tt = 9413;
+	cc = 576;
+	ss = 1;
+	Ｃ難易度[cc] = 5;
+	if (◆Ｐｉｉ == 8 && iim == 1 && unitCheck(1049, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "The Mountain that moves", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Search Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1049, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1049, 999);
+			武将強制登録(3, 1049, 5);
+			キャラ重要変更(0, 1049, 999);
+			return 1;
+		}
+	}
+	tt = 9414;
+	cc = 576;
+	ss = 2;
+	Ｃ難易度[cc] = 10;
+	if (◆Ｐｉｉ == 8 && iim == 2 && unitCheck(1046, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "Convincing Kay-chan's love...", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Negotiation Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1046, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1046, 999);
+			武将強制登録(3, 1046, 5);
+			キャラ重要変更(0, 1046, 999);
+			武将強制登録(ii, 1476, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1476, 999);
+			return 1;
+		}
+	}
+	tt = 9415;
+	cc = 576;
+	ss = 2;
+	Ｃ難易度[cc] = 15;
+	if (◆Ｐｉｉ == 8 && iim == 3 && unitCheck(1117, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "The Gentleman of the Battlefield", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Negotiation Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1117, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1117, 999);
+			武将強制登録(3, 1117, 5);
+			キャラ重要変更(0, 1117, 999);
+			武将強制登録(ii, 1556, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1556, 999);
+			return 1;
+		}
+	}
+	tt = 9416;
+	cc = 576;
+	ss = 3;
+	Ｃ難易度[cc] = 15;
+	if (◆Ｐｉｉ == 8 && iim == 1 && unitCheck(1044, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "The Bottomless Mouth", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Construction Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1044, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1044, 999);
+			武将強制登録(3, 1044, 5);
+			キャラ重要変更(0, 1044, 999);
+			return 1;
+		}
+	}
+	tt = 9417;
+	cc = 576;
+	ss = 3;
+	Ｃ難易度[cc] = 20;
+	if (◆Ｐｉｉ == 8 && iim == 3 && unitCheck(1052, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "Protector of Women", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Construction Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1052, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1052, 999);
+			武将強制登録(3, 1052, 5);
+			キャラ重要変更(0, 1052, 999);
+			return 1;
+		}
+	}
+	tt = 9418;
+	cc = 576;
+	ss = 1;
+	Ｃ難易度[cc] = 20;
+	if (◆Ｐｉｉ == 8 && iim == 3 && unitCheck(1051, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "Martial Artist", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Search Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1051, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1051, 999);
+			武将強制登録(3, 1051, 5);
+			キャラ重要変更(0, 1051, 999);
+			return 1;
+		}
+	}
+	tt = 9419;
+	cc = 576;
+	ss = 1;
+	Ｃ難易度[cc] = 20;
+	if (◆Ｐｉｉ == 8 && iim == 2 && unitCheck(1481, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "Dreaming Girl", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Search Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1481, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1481, 999);
+			武将強制登録(3, 1481, 5);
+			キャラ重要変更(0, 1481, 999);
+			return 1;
+		}
+	}
+	tt = 9420;
+	cc = 576;
+	ss = 3;
+	Ｃ難易度[cc] = 20;
+	if (◆Ｐｉｉ == 8 && iim == 2 && unitCheck(1482, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "Floating Fortress", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Construction Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1482, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1482, 999);
+			武将強制登録(3, 1482, 5);
+			キャラ重要変更(0, 1482, 999);
+			武将強制登録(ii, 1362, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1362, 999);
+			武将強制登録(ii, 1363, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1363, 999);
+			return 1;
+		}
+	}
+	tt = 9421;
+	cc = 576;
+	ss = 1;
+	Ｃ難易度[cc] = 10;
+	if (◆Ｐｉｉ == 8 && iim > 5 && unitCheck(1047, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "Lightning Protector", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Search Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1047, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1047, 999);
+			武将強制登録(3, 1047, 5);
+			キャラ重要変更(0, 1047, 999);
+			return 1;
+		}
+	}
+	tt = 9422;
+	cc = 576;
+	ss = 1;
+	Ｃ難易度[cc] = 10;
+	if (◆Ｐｉｉ == 8 && iim == 4 && unitCheck(1118, ◆Ｐｉｉ, 3) && 武将追加確認(2) == 1)
+	{
+		if (織田選択(ff, tt, "Magical Rival", cc, ss) == 1)
+		{
+			rr = 成否判定(iim, cc, ss, "Search Squad...", 4, 10354);
+			if (rr != 2)
+			{
+				return rr;
+			}
+			武将強制登録(ii, 1118, 5);
+			ＳＭ(5002, 0, 0);
+			キャラ重要変更(0, 1118, 999);
+			武将強制登録(3, 1118, 5);
+			キャラ重要変更(0, 1118, 999);
+			return 1;
+		}
+	}
+	tt = 9845;
+	if (織田選択(ff, tt, "Big Chungus", 0, 0) == 1)
+	{
+		お金＋(10000);
+		for (loop = 1; loop < 33; loop++)
+		{
+		}
+		◆コマンド実行数++;
+		◆コマンド実行数++;
+		return 1;
+	}
+	tt = 1611;
+	if (Ｃ技能総数取得(218, 999) > 1 && ▲隣接 == 2 || Ｃ技能総数取得(230, 999) && ▲隣接 == 2 || ◆Ｐｉｉ == 2 && 国[iim].支配国 != ◆Ｐｉｉ)
+	{
+		if (織田選択(ff, tt, "■Look at enemy commanders", 0, 0) == 1)
+		{
+			ShowEnemyCommanderInfo(ii2);
+			◆コマンド実行数++;
+		}
+	}
+	tt = 1612;
+	if (Ｃ技能総数取得(218, 999) > 1 && 国[iim].支配国 == ◆Ｐｉｉ || Ｃ技能総数取得(230, 999) && 国[iim].支配国 == ◆Ｐｉｉ || ◆Ｐｉｉ == 2 && 国[iim].支配国 == ◆Ｐｉｉ)
+	{
+		if (織田選択(ff, tt, "■Look at ronin commanders", 0, 0) == 1)
+		{
+			ShowEnemyCommanderInfo(21);
+			◆コマンド実行数++;
+		}
+	}
+	tt = 1613;
+	iic = 汎用アップ確認();
+	if (iic != 0)
+	{
+		if (織田選択(ff, tt, gs[ii][iic].名前 + " Communicate [7/7]", 0, 0) == 1)
+		{
+			汎用アップ実行(iic);
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	tt = 1614;
+	if (◆Ｐｉｉ == 1)
+	{
+		if (織田選択(ff, tt, "■Girl Officer Academy", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 4)
+	{
+		if (織田選択(ff, tt, "■AL donation booth", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 5)
+	{
+		if (織田選択(ff, tt, "■Takeda and Houjou House", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 6)
+	{
+		if (織田選択(ff, tt, "■Helman gulag", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 7)
+	{
+		if (織田選択(ff, tt, "■Brawler training camp", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 8 || ◆Ｐｉｉ == 8)
+	{
+		if (織田選択(ff, tt, "■Fiend castle", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 10)
+	{
+		if (織田選択(ff, tt, "■Magic research building", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 11)
+	{
+		if (織田選択(ff, tt, "■SM tower", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 12)
+	{
+		if (織田選択(ff, tt, "■Kalar breeding temple", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 13)
+	{
+		if (織田選択(ff, tt, "■Football camp", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 14)
+	{
+		if (織田選択(ff, tt, "■Keith Guild", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 15)
+	{
+		if (織田選択(ff, tt, "■AL confessional", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 16)
+	{
+		if (織田選択(ff, tt, "■Maria's research building", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 18)
+	{
+		if (織田選択(ff, tt, "■Aladdin's lamp", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (◆Ｐｉｉ == 3)
+	{
+		if (織田選択(ff, tt, "■Archfiend castle", 0, 0) == 1)
+		{
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	if (system.IsDebugMode() == 1)
+	{
+		tt = 9998;
+		if (織田選択(ff, tt, "■デバッグ情報■", 0, 0) == 1)
+		{
+			デバッグ情報();
+			◆コマンド実行数++;
+			return 1;
+		}
+	}
+	return 0;
+}

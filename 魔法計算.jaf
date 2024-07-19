@@ -1,0 +1,102 @@
+lint –‚–@ŒvZ(lint iic, lint iic2)
+{
+	lint ii = 0;
+	lint £•ºí‚` = gs[ii][iic].•ºí;
+	lint £•ºí‚a = gs[ii][iic2].•ºí;
+	lint £UŒ‚‚` = gs[ii][iic].’m—Í * 5;
+	lint £–hŒä‚a = gs[ii][iic2].’m—Í * 4;
+	lint ƒLƒƒƒ‰ = gs[ii][iic].”Ô†;
+	lint aa = 0;
+	lint aa1 = 0;
+	lint aa2 = 0;
+	lint aa3 = 0;
+	lint rr = 0;
+	lint cc = 0;
+	lint bb = 0;
+	lint ƒŒƒxƒ‹· = 0;
+	lint £UŒ‚•t—^”{—¦ = 0;
+	lint £–hŒä•t—^”{—¦ = 0;
+	lint £UŒ‚‘¤ = 0;
+	lint £–hŒä‘¤ = 0;
+	if (Ÿ‡í–¡•ûƒ^[ƒ“ == 1)
+	{
+		£UŒ‚‘¤ = 1;
+		£–hŒä‘¤ = 2;
+	}
+	else
+	{
+		£UŒ‚‘¤ = 2;
+		£–hŒä‘¤ = 1;
+	}
+	if (Ÿí“¬ƒ^ƒCƒv == 1)
+	{
+		£•ºí‚` = gs[ii][iic].‚rEí;
+		aa1 = 7;
+		ƒŒƒxƒ‹· = gs[ii][iic].‚rƒŒƒxƒ‹ - gs[ii][iic2].‚rƒŒƒxƒ‹ / 2;
+		if (ƒŒƒxƒ‹· < 5)
+		{
+			ƒŒƒxƒ‹· = 5;
+		}
+		if (ƒŒƒxƒ‹· > 30)
+		{
+			ƒŒƒxƒ‹· = 30 + (ƒŒƒxƒ‹· - 30) / 2;
+		}
+		£UŒ‚‚` = aa1 * ƒŒƒxƒ‹·;
+		if (Ÿ‚c‚a‚u == 1)
+		{
+			LOG_TADA("@–‚–@ŒvZ@" + string(£UŒ‚‚`) + "@ƒ\ƒŒvZmƒŒƒxƒ‹·" + string(ƒŒƒxƒ‹·) + "]");
+			if (gs[ii][iic].’m—Í•t—^ != 0)
+			{
+				LOG_TADA("^UŒ‚•t—^");
+			}
+			if (gs[ii][iic2].’m—Í•t—^ != 0)
+			{
+				LOG_TADA("^–hŒä•t—^");
+			}
+			LOG_TADA("\n");
+		}
+		if (ƒLƒƒƒ‰ == 1241)
+		{
+			£UŒ‚‚` = 100;
+		}
+		return £UŒ‚‚`;
+	}
+	aa1 = 5;
+	if (£•ºí‚` == 11)
+	{
+		aa1 = 35;
+	}
+	if (£•ºí‚` == 8 || £•ºí‚` == 31)
+	{
+		aa1 = 30;
+	}
+	if (£•ºí‚` == 9 || £•ºí‚` == 7)
+	{
+		aa1 = 15;
+	}
+	aa2 = 10;
+	if (£•ºí‚a == 8 || £•ºí‚a == 11)
+	{
+		aa2 = 0;
+	}
+	if (£•ºí‚a == 31)
+	{
+		aa2 = 5;
+	}
+	aa1 = aa1 + aa2;
+	if (‚e‚o‹Z”\æ“¾(216, £–hŒä‘¤) != 0)
+	{
+		aa1 -= 10;
+	}
+	aa3 = (((aa1 + (gs[ii][iic].’m—Í•t—^)) - (gs[ii][iic2].’m—Í•t—^*0.8)) + £UŒ‚‚`) - £–hŒä‚a;
+	if (aa3 < 10)
+	{
+		aa3 = 10;
+	}
+	if (Ÿ‚c‚a‚u == 1)
+	{
+		LOG_TADA("@–‚–@ŒvZ@" + string(aa3) + "@@" + string(aa1) + "{" + string(£UŒ‚‚`) + "(" + string(£UŒ‚•t—^”{—¦) + "j|" + string(£–hŒä‚a) + "(" + string(£–hŒä•t—^”{—¦) + ")\n");
+	}
+	return aa3;
+	return 0;
+}

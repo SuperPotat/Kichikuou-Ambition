@@ -1,0 +1,17 @@
+void switchControl(lint ii)
+{
+	lint previi = Ÿ‚o‚‰‚‰;
+	lint loop = 0;
+	lint loop2 = 0;
+	¨—Í[previi].¨—Í—\”õ‚W = Ÿ‹à;
+	¨—Í[previi].‘ó‘Ô[0] = ‚f‚e[151];
+	for (loop = 1; loop < 31; loop++)
+	{
+		gs[previi][loop + 30] = gs[20][loop];
+		gs[20][loop] = gs[ii][loop + 30];
+		gs[ii][loop + 30].”Ô† = 0;
+	}
+	Ÿ‹à = ¨—Í[ii].¨—Í—\”õ‚W;
+	‚f‚e[151] = ¨—Í[ii].‘ó‘Ô[0];
+	Ÿ‚o‚‰‚‰ = ii;
+}

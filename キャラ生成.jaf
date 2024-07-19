@@ -1,0 +1,665 @@
+void ƒLƒƒƒ‰¶¬(int ii2, lint £•ºí, lint £ƒ‰ƒ“ƒN, string –¼‘O•¶š—ñ, lint £«•Ê)
+{
+	lint ii = 0;
+	lint iic = 1;
+	lint rr = 0;
+	lint ra = 0;
+	lint loop = 0;
+	lint aa1 = 0;
+	lint aa2 = 0;
+	lint aa3 = 0;
+	lint iic2 = 0;
+	lint aa = 0;
+	£ƒ‰ƒ“ƒN = ¨—Í[ii2].ŒR–—Í + £ƒ‰ƒ“ƒN;
+	‚f‚r‰Šú‰»(ii, iic);
+	gs[ii][iic].s“® = 0;
+	gs[ii][iic].”Ô† = 999;
+	gs[ii][iic].Š‘®¨—Í = ii2;
+	if ((ii2 == 8 || ii2 == 9) && (£•ºí == 1 || £•ºí == 3 || £•ºí == 4 || £•ºí == 5 || £•ºí == 6 || £•ºí == 7 || £•ºí == 8 || £•ºí == 9 || £•ºí == 13))
+	{
+		gs[ii][iic].Š‘®¨—Í = 6;
+	}
+	if (gs[ii][iic].Š‘®¨—Í == 0)
+	{
+		gs[ii][iic].Š‘®¨—Í = 1;
+	}
+	if (gs[ii][iic].Š‘®¨—Í == 2)
+	{
+		gs[ii][iic].Š‘®¨—Í = 1;
+	}
+	if (gs[ii][iic].Š‘®¨—Í == 21)
+	{
+		gs[ii][iic].Š‘®¨—Í = 1;
+	}
+	Ÿ’Ê‚µ”Ô†++;
+	gs[ii][iic].’Ê‚µ”Ô† = Ÿ’Ê‚µ”Ô†;
+	gs[ii][iic].«•Ê = 0;
+	if (RAND(3) == 1)
+	{
+		gs[ii][iic].«•Ê = 1;
+	}
+	if (£•ºí == 9 && RAND(5) != 1)
+	{
+		gs[ii][iic].«•Ê = 1;
+	}
+	if (£•ºí == 7 && RAND(5) != 1)
+	{
+		gs[ii][iic].«•Ê = 0;
+	}
+	if (£•ºí == 10)
+	{
+		gs[ii][iic].«•Ê = 1;
+	}
+	if (£•ºí == 32)
+	{
+		gs[ii][iic].«•Ê = 1;
+	}
+	if (£•ºí == 33)
+	{
+		gs[ii][iic].«•Ê = 0;
+	}
+	if (ii2 == 12)
+	{
+		gs[ii][iic].«•Ê = 1;
+	}
+	if (ii2 == 6)
+	{
+		gs[ii][iic].«•Ê = 0;
+	}
+	if (£«•Ê == 1)
+	{
+		gs[ii][iic].«•Ê = 1;
+	}
+	if (£«•Ê == 10)
+	{
+		gs[ii][iic].«•Ê = 0;
+	}
+	if (gs[ii][iic].«•Ê == 0)
+	{
+		gs[ii][iic].ŠÖŒWƒtƒ‰ƒOˆ¤î = 9;
+	}
+	if (–¼‘O•¶š—ñ == "")
+	{
+		–¼‘O•¶š—ñ = ƒLƒƒƒ‰¶¬^–¼‘O(ii2, £•ºí);
+	}
+	gs[ii][iic].–¼‘O = –¼‘O•¶š—ñ;
+	aa1 = £ƒ‰ƒ“ƒN;
+	aa1 = ƒx[ƒX•º—Íæ“¾(ii2, 100);
+	if (£•ºí == 4 || £•ºí == 6 || £•ºí == 8 || £•ºí == 9 || £•ºí == 31)
+	{
+		aa1 = ”{—¦ŒvZŠÖ”(aa1, 60);
+	}
+	if (£•ºí == 5 || £•ºí == 7)
+	{
+		aa1 = ”{—¦ŒvZŠÖ”(aa1, 130);
+	}
+	if (£•ºí == 25)
+	{
+		aa1 = ”{—¦ŒvZŠÖ”(aa1, 150);
+	}
+	if (£•ºí == 3)
+	{
+		aa1 = ”{—¦ŒvZŠÖ”(aa1, 200);
+	}
+	if (£•ºí == 24)
+	{
+		aa1 = ”{—¦ŒvZŠÖ”(aa1, 300);
+	}
+	”’l—h‚ç‚¬(aa1, 30);
+	if (aa1 > 9999)
+	{
+		aa1 = 9999;
+	}
+	gs[ii][iic].•º”Å‘å = aa1;
+	gs[ii][iic].•º” = gs[ii][iic].•º”Å‘å;
+	gs[ii][iic].•ºí = £•ºí;
+	gs[ii][iic].ŠÖŒW = 2;
+	gs[ii][iic].‹Z”Šî‘b’l = 1 + RAND(3);
+	gs[ii][iic].•ß—¸’ïR’l = RAND(5) + 5;
+	gs[ii][iic].íê¶€Šm—¦ = 10 + RAND(70);
+	gs[ii][iic].’Tõ = RAND(3);
+	gs[ii][iic].ŒğÂ = RAND(3);
+	gs[ii][iic].Œšİ = RAND(3);
+	ra = RAND(6);
+	if (ra == 1)
+	{
+		gs[ii][iic].’Tõ += RAND(4);
+	}
+	if (ra == 2)
+	{
+		gs[ii][iic].ŒğÂ += RAND(4);
+	}
+	if (ra == 3)
+	{
+		gs[ii][iic].Œšİ += RAND(4);
+	}
+	®”’²®ŠÖ”(gs[ii][iic].’Tõ, 9, 1);
+	®”’²®ŠÖ”(gs[ii][iic].ŒğÂ, 9, 1);
+	®”’²®ŠÖ”(gs[ii][iic].Œšİ, 9, 1);
+	gs[ii][iic].’TõŠî‘b’l = gs[ii][iic].’Tõ;
+	gs[ii][iic].ŒğÂŠî‘b’l = gs[ii][iic].ŒğÂ;
+	gs[ii][iic].ŒšİŠî‘b’l = gs[ii][iic].Œšİ;
+	aa1 = Math.Rand() % 21 + 10; // Stat total for the unit, range is 10-30	
+	gs[ii][iic].Šî‘b‘—Í = RAND(3) - 1;
+	if (aa1 > 20)
+	{
+		gs[ii][iic].Šî‘b‘—Í + 1;
+	}
+	if (aa1 > 25)
+	{
+		gs[ii][iic].Šî‘b‘—Í + 1;
+	}
+	while (aa1 > 0)
+	{
+		switch (RAND(4))
+		{
+			case 1:
+				if (gs[ii][iic].UŒ‚Šî‘b’l > 8)
+				{
+					break;
+				}
+				gs[ii][iic].UŒ‚Šî‘b’l += 1;
+				aa1 -= 1;
+				break;
+			case 2:
+				if (gs[ii][iic].–hŒäŠî‘b’l > 8)
+				{
+					break;
+				}
+				gs[ii][iic].–hŒäŠî‘b’l += 1;
+				aa1 -= 1;
+				break;
+			case 3:
+				if (gs[ii][iic].’m—ÍŠî‘b’l > 8)
+				{
+					break;
+				}
+				gs[ii][iic].’m—ÍŠî‘b’l += 1;
+				aa1 -= 1;
+				break;
+			case 4:
+				if (gs[ii][iic].‘‚³Šî‘b’l > 8)
+				{
+					break;
+				}
+				gs[ii][iic].‘‚³Šî‘b’l += 1;
+				aa1 -= 1;
+				break;
+		}
+	}
+	®”’²®ŠÖ”(gs[ii][iic].UŒ‚Šî‘b’l, 9, 0); // Making sure combat stats are within range
+	®”’²®ŠÖ”(gs[ii][iic].–hŒäŠî‘b’l, 9, 0);
+	®”’²®ŠÖ”(gs[ii][iic].‘‚³Šî‘b’l, 9, 0);
+	®”’²®ŠÖ”(gs[ii][iic].’m—ÍŠî‘b’l, 9, 0);
+	gs[ii][iic].UŒ‚ = gs[ii][iic].UŒ‚Šî‘b’l;
+	gs[ii][iic].–hŒä = gs[ii][iic].–hŒäŠî‘b’l;
+	gs[ii][iic].’m—Í = gs[ii][iic].’m—ÍŠî‘b’l;
+	gs[ii][iic].‘‚³ = gs[ii][iic].‘‚³Šî‘b’l;
+	®”’²®ŠÖ”(gs[ii][iic].Šî‘b‘—Í, 9, 0); // Making sure cost is within range
+	gs[ii][iic].•K—v‘—Í = gs[ii][iic].Šî‘b‘—Í;
+	gs[ii][iic].‹Z‚P = 0;
+	gs[ii][iic].‹Z‚Q = 0;
+	gs[ii][iic].‹Z‚R = 0;
+	gs[ii][iic].‹Z‚S = 0;
+	gs[ii][iic].‹Z”\ = 0;
+	gs[ii][iic].‚`‚` = 0;
+	gs[ii][iic].‚a‚a = 0;
+	ƒfƒtƒHƒ‹ƒg‹Z”\(£•ºí, ii, iic);
+	if ((RAND(5) == 1 && ii != 1) || £•ºí == 24)
+	{
+		ra = RAND(15);
+		if (ra == 1)
+		{
+			gs[ii][iic].‹Z”\ = 113;
+		}
+		if (ra == 2)
+		{
+			gs[ii][iic].‹Z”\ = 114;
+		}
+		if (ra == 3)
+		{
+			gs[ii][iic].‹Z”\ = 115;
+		}
+		if (ra == 4)
+		{
+			gs[ii][iic].‹Z”\ = 116;
+		}
+		if (ra == 5)
+		{
+			gs[ii][iic].‹Z”\ = 117;
+		}
+		if (ra == 6)
+		{
+			gs[ii][iic].‹Z”\ = 118;
+		}
+		if (ra == 7)
+		{
+			gs[ii][iic].‹Z”\ = 108;
+		}
+		if (ra == 8)
+		{
+			gs[ii][iic].‹Z”\ = 109;
+		}
+		if (ra == 9)
+		{
+			gs[ii][iic].‹Z”\ = 111;
+		}
+		if (ra == 10)
+		{
+			gs[ii][iic].‹Z”\ = 119;
+		}
+		if (ra == 11)
+		{
+			gs[ii][iic].‹Z”\ = 120;
+		}
+		if (ra == 12)
+		{
+			gs[ii][iic].‹Z”\ = 121;
+		}
+		if (ra == 13)
+		{
+			gs[ii][iic].‹Z”\ = 122;
+		}
+		if (ra == 14)
+		{
+			gs[ii][iic].‹Z”\ = 125;
+		}
+		if (ra == 15)
+		{
+			gs[ii][iic].‹Z”\ = 137;
+		}
+	}
+	if (£•ºí == 24 || £•ºí == 20)
+	{
+		ra = RAND(7);
+		if (ra == 1)
+		{
+			gs[ii][iic].’TõŠî‘b’l += 2;
+		}
+		if (ra == 2)
+		{
+			gs[ii][iic].ŒğÂŠî‘b’l += 2;
+		}
+		if (ra == 3)
+		{
+			gs[ii][iic].ŒšİŠî‘b’l += 2;
+		}
+	}
+	if (£•ºí == 1 || £•ºí == 27)
+	{
+		if (RAND(5) == 1)
+		{
+			ra = RAND(7);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚P = 96;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚R = 182;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚S = 18;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚S = 80;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 12;
+			}
+			if (ra == 6)
+			{
+				gs[ii][iic].‹Z‚S = 19;
+			}
+			if (ra == 7)
+			{
+				gs[ii][iic].‹Z‚S = 16;
+			}
+		}
+	}
+	if (£•ºí == 3 || £•ºí == 28)
+	{
+		if (RAND(5) == 1)
+		{
+			ra = RAND(8);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z”\ = 127;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚P = 22;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚P = 23;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚R = 184;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 27;
+			}
+			if (ra == 6)
+			{
+				gs[ii][iic].‹Z‚S = 132;
+			}
+			if (ra == 7)
+			{
+				gs[ii][iic].‹Z‚S = 138;
+			}
+			if (ra == 8)
+			{
+				gs[ii][iic].‹Z‚S = 26;
+			}
+		}
+	}
+	if (£•ºí == 5 || £•ºí == 29)
+	{
+		if (RAND(6) == 1 && ii2 != 1)
+		{
+			ra = RAND(6);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚R = 30;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚S = 152;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚S = 151;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚S = 139;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 140;
+			}
+			if (ra == 6)
+			{
+				gs[ii][iic].‹Z‚S = 278;
+			}
+		}
+	}
+	if (£•ºí == 4 || £•ºí == 32)
+	{
+		gs[ii][iic].‹Z”Šî‘b’l = 1;
+		if (RAND(10) == 1 && ii2 != 1)
+		{
+			ra = RAND(3);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚S = 59;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚S = 29;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z”Šî‘b’l = 2;
+			}
+		}
+	}
+	if (£•ºí == 2 || £•ºí == 33)
+	{
+		if (RAND(5) == 1 && ii2 != 1)
+		{
+			ra = RAND(6);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚P = 20;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚P = 25;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚R = 165;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚S = 15;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 133;
+			}
+			if (ra == 6)
+			{
+				gs[ii][iic].‹Z‚S = 89;
+			}
+		}
+	}
+	if (£•ºí == 9)
+	{
+		if (RAND(5) == 1 && ii2 != 1)
+		{
+			ra = RAND(6);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚R = 30;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚S = 97;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚S = 70;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚P = 52;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚P = 51;
+			}
+			if (ra == 6)
+			{
+				gs[ii][iic].‹Z”\ = 216;
+			}
+		}
+	}
+	if (£•ºí == 7)
+	{
+		if (RAND(5) == 1 && ii2 != 1)
+		{
+			ra = RAND(5);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚R = 35;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚P = 126;
+			}
+			if (ra == 3 && RAND(10) == 1)
+			{
+				gs[ii][iic].‹Z‚P = 174;
+			}
+			if (ra == 4 && RAND(10) == 1)
+			{
+				gs[ii][iic].‹Z‚P = 175;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 142;
+			}
+		}
+	}
+	if (£•ºí == 10)
+	{
+		if (RAND(5) == 1 && ii2 != 1)
+		{
+			ra = RAND(5);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚P = 22;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚P = 23;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚S = 16;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚S = 12;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 26;
+			}
+		}
+	}
+	if (£•ºí == 24)
+	{
+		if (RAND(5) == 1 && ii2 != 1)
+		{
+			ra = RAND(6);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚S = 27;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚S = 19;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚S = 160;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚S = 5;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 73;
+			}
+			if (ra == 6)
+			{
+				gs[ii][iic].‹Z‚S = 70;
+			}
+		}
+	}
+	if (£•ºí == 8)
+	{
+		if (RAND(5) == 1 && ii2 != 1)
+		{
+			ra = RAND(6);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚P = 143;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚R = 162;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚S = 41;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚S = 42;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 43;
+			}
+			if (ra == 6)
+			{
+				gs[ii][iic].‹Z”\ = 216;
+			}
+		}
+	}
+	if (£•ºí == 11)
+	{
+		if (RAND(5) == 1 && ii2 != 1)
+		{
+			ra = RAND(7);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚P = 4;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z‚P = 265;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z‚R = 253;
+			}
+			if (ra == 4)
+			{
+				gs[ii][iic].‹Z‚R = 254;
+			}
+			if (ra == 5)
+			{
+				gs[ii][iic].‹Z‚S = 178;
+			}
+			if (ra == 6)
+			{
+				gs[ii][iic].‹Z‚S = 64;
+			}
+			if (ra == 7)
+			{
+				gs[ii][iic].‹Z‚S = 240;
+			}
+		}
+	}
+	if (£•ºí == 6)
+	{
+		if (RAND(5) == 1 && ii2 != 1)
+		{
+			ra = RAND(3);
+			if (ra == 1)
+			{
+				gs[ii][iic].‹Z‚R = 157;
+			}
+			if (ra == 2)
+			{
+				gs[ii][iic].‹Z”\ = 213;
+			}
+			if (ra == 3)
+			{
+				gs[ii][iic].‹Z”\ = 124;
+			}
+		}
+	}
+	if (Ÿ—\”õ‚O‚P == 1 && RAND(30) == 1)
+	{
+		ra = RAND(2);
+		if (ra == 1)
+		{
+			gs[ii][iic].‹Z”\ = 217;
+		}
+		if (ra == 2)
+		{
+			gs[ii][iic].‹Z”\ = 218;
+		}
+	}
+	if (ii == 1)
+	{
+		gs[ii][iic].‚rƒŒƒxƒ‹ = 8;
+		gs[ii][iic].‚rƒŒƒxƒ‹ãŒÀ = 25;
+	}
+	‚b‚g©“®¶¬(ii, iic, ii2);
+	‚f‚rŠî‘b’lŒvZ(ii, iic);
+	return;
+}
