@@ -2,4 +2,4 @@ A mod originally forked from Darkness Hero Rance focused on a complete multiplay
 
 Still heavily in-dev as making large rework changes to the mod, only "Expanded Mode" is properly supported at this point in time but will eventually support all the other modes and others are planned to be included.
 
-To install: Drag all files and over-ride them in your Sengoku Rance install folder, only supports the MangaGamer release however and will not work on the original Japanese release.
+Link to the latest release: https://github.com/SuperPotat/Kichikuou-Ambition/releases/latest
