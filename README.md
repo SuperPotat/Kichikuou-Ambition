@@ -2,4 +2,6 @@ A mod originally forked from Darkness Hero Rance focused on a complete multiplay
 
 This mod is fully SFW as long as you don't open the CG menu (this'll be removed too eventually as well) and there is no NSFW content to be added at any point.
 
+This mod is considered to be in a mostly complete state and is currently on hiatus, if any bugs are found please still report them and they will be fixed.
+
 Link to the latest release: https://github.com/SuperPotat/Kichikuou-Ambition/releases/latest
